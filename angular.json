@@ -1,7 +1,176 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "352d22c7-3cf8-40a8-8141-e08368d7437d"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-  }
+    "finpro-lib": {
+      "projectType": "library",
+      "root": "projects/finpro-lib",
+      "sourceRoot": "projects/finpro-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/finpro-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/finpro-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/finpro-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/finpro-lib/src/test.ts",
+            "tsConfig": "projects/finpro-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/finpro-lib/karma.conf.js"
+          }
+        }
+      }
+    },
+    "finpro-sdk": {
+      "projectType": "library",
+      "root": "projects/finpro-sdk",
+      "sourceRoot": "projects/finpro-sdk/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/finpro-sdk/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/finpro-sdk/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/finpro-sdk/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/finpro-sdk/src/test.ts",
+            "tsConfig": "projects/finpro-sdk/tsconfig.spec.json",
+            "karmaConfig": "projects/finpro-sdk/karma.conf.js"
+          }
+        }
+      }
+    },
+    "consuming-sdk": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/consuming-sdk",
+      "sourceRoot": "projects/consuming-sdk/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/consuming-sdk",
+            "index": "projects/consuming-sdk/src/index.html",
+            "main": "projects/consuming-sdk/src/main.ts",
+            "polyfills": "projects/consuming-sdk/src/polyfills.ts",
+            "tsConfig": "projects/consuming-sdk/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/consuming-sdk/src/favicon.ico",
+              "projects/consuming-sdk/src/assets"
+            ],
+            "styles": [
+              "projects/consuming-sdk/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/consuming-sdk/src/environments/environment.ts",
+                  "with": "projects/consuming-sdk/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "consuming-sdk:build:production"
+            },
+            "development": {
+              "browserTarget": "consuming-sdk:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "consuming-sdk:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/consuming-sdk/src/test.ts",
+            "polyfills": "projects/consuming-sdk/src/polyfills.ts",
+            "tsConfig": "projects/consuming-sdk/tsconfig.spec.json",
+            "karmaConfig": "projects/consuming-sdk/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/consuming-sdk/src/favicon.ico",
+              "projects/consuming-sdk/src/assets"
+            ],
+            "styles": [
+              "projects/consuming-sdk/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "finpro-lib"
 }
