@@ -5,8 +5,19 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitReturns": true,
+    "strict": false,
+    "paths": {
+      "finpro-lib": [
+        "dist/finpro-lib/finpro-lib",
+        "dist/finpro-lib"
+      ],
+      "finpro-sdk": [
+        "dist/finpro-sdk/finpro-sdk",
+        "dist/finpro-sdk"
+      ]
+    },
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
