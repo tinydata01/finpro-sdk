@@ -224,6 +224,75 @@ export class HttpService {
     }
   }
 
+  verifyUser(options) {
+    this.url = 'https://test.moneyone.in/finpro_test/profile';
+
+    var data: any = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'organizationId': 'kotak',
+        'client_id': '27cb60c4a421611872b7b352aa7a78c1dfecb1d1',
+        'client_secret': 'ec64eb9efb18d530c52552f2e13d856e0d2ced68',
+        'appIdentifier': 'com.moneyone.app'
+      }),
+      body: options ? options : null
+    };
+
+    try {
+      // this.utils.commonConfig.isLoader = true
+      return this.http
+        .request('POST', this.url, data)
+        .pipe(
+          map(res => {
+            console.log("response", res);
+            let response: any = res;
+            return response;
+          })
+        )
+        .pipe(catchError(this.handleError.bind(this)));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  checkProfile(options) {
+    console.log('optionstest', options)
+    this.url = options?.url
+    this.headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "client_id": '27cb60c4a421611872b7b352aa7a78c1dfecb1d1',
+      "client_secret": 'ec64eb9efb18d530c52552f2e13d856e0d2ced68',
+      "organisationId": 'kotak',
+      "appIdentifier": 'com.moneyone.app',
+    });
+    var data: any = {
+      headers: this.headers,
+      // params: options.params ? options.params : null,
+      body: options.data ? options.data : null
+    };
+    try {
+      // this.utils.commonConfig.isLoader = true
+      return this.http
+        .request(options.type, this.url, data)
+        .pipe(
+          map(res => {
+            this.hideThrobber();
+            this.checkForSessionError(res);
+            delete this.loading[this.url];
+            let loadings = Object.keys(this.loading);
+            if (!(loadings && loadings.length)) {
+              // this.utils.commonConfig.isLoader = false;
+            }
+            let response: any = res;
+            return response;
+          })
+        )
+        .pipe(catchError(this.handleError.bind(this)));
+    } catch (error) {
+      //   console.log(error);
+    }
+  }
+
   handleError(obj) {
     this.checkForSessionError(obj.error);
     this.hideThrobber();

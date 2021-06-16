@@ -10,6 +10,14 @@
     padding: 34px 20px;
 }
 
+@media (max-width: 767px){
+    .content-section {
+        padding: 50px 30px 20px 20px;
+        box-shadow: none;
+        max-width: 400px;
+    }
+}
+
 .logoutBtn{    
     display: flex;
     position: absolute;

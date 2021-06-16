@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -37,8 +37,9 @@ import { DiscoverAccountsComponent } from '../app/pages/account-link/components/
 
 @NgModule({
   declarations: [
-    
+
     FinproSdkComponent,
+    AahandleComponent,
     AuthenticationComponent,
     MessagesComponent,
     ToastComponent,
@@ -60,8 +61,8 @@ import { DiscoverAccountsComponent } from '../app/pages/account-link/components/
     DiscoverAccountsComponent,
     FiSmallCardComponent,
     FIListComponent,
-    
-   ],
+
+  ],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -70,11 +71,11 @@ import { DiscoverAccountsComponent } from '../app/pages/account-link/components/
     ReactiveFormsModule,
     TranslateModule.forRoot({
       loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
       }
-  })
+    })
   ],
   exports: [
     FinproSdkComponent,
