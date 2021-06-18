@@ -21,6 +21,7 @@ export class DiscoverAccountsComponent implements OnInit {
   checkSavingAccount: boolean = true;
   AccountDiscoveriesSkipped = 0;
   btnDisabled: boolean = true;
+  accRefNumber;
   @Input() discoveredAccountsLength: any;
   @Input() discoveredAccounts: any;
 
@@ -143,6 +144,7 @@ export class DiscoverAccountsComponent implements OnInit {
     this.checkAccountsLinked = { 'accounts': accountToLink };
   }
   sendOTPToLink(i, flag) {
+    console.log("triggered", i);
     // this.btnDisabled = false;
     this.displayOTP[i] = true;
     var accountToLink = [{
@@ -155,6 +157,7 @@ export class DiscoverAccountsComponent implements OnInit {
         userInfo: {}
       }
     }];
+    console.log("accountList", this.accountList);
     this.accountList.forEach(item => {
       accountToLink.push({
         type: item.accType,
@@ -167,7 +170,9 @@ export class DiscoverAccountsComponent implements OnInit {
         }
       })
     })
+    console.log("dataaccount", accountToLink);
     accountToLink.splice(0, 1);
+    console.log("dataaccount1", accountToLink);
     let accounts = { 'accounts': accountToLink };
     if (accountToLink.length != 0) {
       this.oneMoneyService.multiAccountlink(accounts).subscribe(res => {
@@ -187,7 +192,7 @@ export class DiscoverAccountsComponent implements OnInit {
       this.displayOTP[i] = false;
       this.loader.showToast(toastStatuses.ERROR, "pleaseSelectOneAccountAtleast");
     }
-
+    console.log("displayOTP[i]", this.displayOTP[i]);
   }
   dataVerify: any;
   enteredOtp: any = '';

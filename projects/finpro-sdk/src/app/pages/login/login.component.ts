@@ -104,7 +104,7 @@ export class LoginComponent implements OnInit {
         type: 'POST',
         url: 'https://test.moneyone.in/finpro_test/profile',
         data: {
-          "mobileNumber": "8328113914"
+          "mobileNumber": "9492602601"
         }
       }).subscribe
         (response => {
