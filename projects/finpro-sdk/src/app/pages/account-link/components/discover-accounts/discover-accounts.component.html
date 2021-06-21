@@ -23,7 +23,7 @@
         (click)="sendOTPToLink(i,'sendOTP')">Link</div>
       <div *ngIf="displayLinked[i]" class="link-account d-flex" style="left: 450px;">
         <img src="../../../../../assets/images/pngs/check-mark.png" class="linked-account-img">
-        <span class="linked-account-text">{{'app.linked'|translate}}</span>
+        <span class="linked-account-text">Linked</span>
       </div>
     </div>
     <div *ngIf="displayOTP[i]">
@@ -134,7 +134,7 @@
 <app-custom-overlay class="action__dialog" *ngIf="showVpinPopup">
   <div class="consent-action-popup">
     <div class="d-flex">
-      <div class="consent-action-popup-heading">{{ 'app.enterYourOtp' | translate}}
+      <div class="consent-action-popup-heading">Enter your OTP
       </div>
       <div class="close-btn cursor--pointer" title="close" (click)="closeVpinPopup()">
         <img class="close-btn-icon" src="../../../../../assets/images/pngs/close-button.png">
@@ -148,14 +148,12 @@
     </div>
     <div class="error-msg otp__error"
       *ngIf="consentActionSubmitted && ( !consentActionOtp || consentActionOtp.length < settings.length)">
-      {{ 'app.pleaseEnterValidOTP' | translate }}
+      Please Enter Valid OTP
     </div>
-    <div class="consent-popup-forgot-section  cursor--pointer" id="resendOTPId">{{
-      'app.resendOTP' |
-      translate}}</div>
+    <div class="consent-popup-forgot-section  cursor--pointer" id="resendOTPId">Resend OTP</div>
     <button class="custom-btn btn-primary consent-action-button cursor--pointer" id="submitOTPId" type="submit"
       (click)="performAction()">
-      {{ 'app.submit' | translate }}
+      Submit
     </button>
   </div>
 </app-custom-overlay>

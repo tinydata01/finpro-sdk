@@ -45,6 +45,26 @@
 .checkbox .input-checkbox-value {
   display: none;
 }
+
+.btn-primary {
+  background: #005b9f;
+}
+
+.ml-25 {
+  margin-left: 25px;
+}
+
+.btn-danger {
+  background: #e10000;
+}
+
+.checkbox{
+  label{
+    color: #666666;
+    font-family: "SansProRegular";
+    font-size: 14px !important;
+  }
+}
 .checkbox .input-authorize-value{
   display:none;
 }
