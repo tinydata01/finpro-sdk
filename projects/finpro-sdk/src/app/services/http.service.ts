@@ -224,37 +224,6 @@ export class HttpService {
     }
   }
 
-  verifyUser(options) {
-    this.url = 'https://test.moneyone.in/finpro_test/profile';
-
-    var data: any = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'organizationId': 'kotak',
-        'client_id': '27cb60c4a421611872b7b352aa7a78c1dfecb1d1',
-        'client_secret': 'ec64eb9efb18d530c52552f2e13d856e0d2ced68',
-        'appIdentifier': 'com.moneyone.app'
-      }),
-      body: options ? options : null
-    };
-
-    try {
-      // this.utils.commonConfig.isLoader = true
-      return this.http
-        .request('POST', this.url, data)
-        .pipe(
-          map(res => {
-            console.log("response", res);
-            let response: any = res;
-            return response;
-          })
-        )
-        .pipe(catchError(this.handleError.bind(this)));
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   checkProfile(options) {
     console.log('optionstest', options)
     this.url = options?.url
@@ -381,10 +350,10 @@ export class HttpService {
       'Content-Type': 'application/json',
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      'organizationId': 'finprobank',
-      'client_id': '27cb60c4a421611872b7b352aa7a78c1dfecb1d1',
-      'client_secret': 'ec64eb9efb18d530c52552f2e13d856e0d2ced68',
-      'appIdentifier': 'com.moneyone.app'
+      'organizationId': 'LOT0043',
+      'client_id': 'fp_test_5284d0950d45aa8de24f9bf7b4424c0f4e1d0bff',
+      'client_secret': 'f204936f3119534e21034315a1ee4c724980705a42b38b9508c51ed854275661a7ec2184',
+      'appIdentifier': 'com.lot0043.app'
     })
 
     let body = {
