@@ -400,17 +400,17 @@ export class DiscoverAccountsComponent implements OnInit {
     })
   }
   getRequestConsent() {
-    // this.httpService.requestConsent(this.userMobileNumber, this.vuaData).subscribe(res => {
-    //   if (localStorage.getItem("consentHandle") == "") {
-    //     localStorage.setItem("consentHandle", res.data.consent_handle);
-    //     this.showConsentDetail();
-    //   }
-    //   else {
-    //     localStorage.removeItem("consentHandle");
-    //     localStorage.setItem("consentHandle", res.data.consent_handle);
-    //     this.showConsentDetail();
-    //   }
+    this.httpService.requestConsent(this.userMobileNumber, this.vuaData).subscribe(res => {
+      if (localStorage.getItem("consentHandle") == "") {
+        localStorage.setItem("consentHandle", res.data.consent_handle);
+        this.showConsentDetail();
+      }
+      else {
+        localStorage.removeItem("consentHandle");
+        localStorage.setItem("consentHandle", res.data.consent_handle);
+        this.showConsentDetail();
+      }
 
-    // })
+    })
   }
 }

@@ -363,13 +363,13 @@ export class HttpService {
       productID: "prod276",
       vua: vua
     }
-    //return this.http.post('https://uat.moneyone.in/finproadminserver_uat/finpro_admin/v1/v2/requestconsent', body, { headers: header }).pipe(
-    //  return this.http.post(this.userService.data["finproURL"], body, { headers: header }).pipe(
-    //   map(res => {
-    //     let response: any = res;
-    //     return response;
-    //   })
-    // )
+    return this.http.post('https://app-test.moneyone.in/finpro_uat/v2/requestconsent', body, { headers: header }).pipe(
+      //  return this.http.post(this.userService.data["finproURL"], body, { headers: header }).pipe(
+      map(res => {
+        let response: any = res;
+        return response;
+      })
+    )
 
   }
   errorHandler(obj) { }

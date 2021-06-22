@@ -21,9 +21,9 @@
     </div>
     <div *ngIf="needReqData && (massagedCardData.requireIds && massagedCardData.requireIds.length)"
         class="fi__small__card--req">
-        {{ 'app.requires' }} {{ "app."+massagedCardData.requireIds }}
+        Requires Mobile Number
     </div>
     <div class="text-coming" *ngIf="massagedCardData.fipStatus == 'DISABLED'">
-        {{ 'app.comingsoon' }}
+        Coming Soon
     </div>
 </section>
