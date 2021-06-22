@@ -9,7 +9,8 @@
 
         <div *ngSwitchCase="'inputVuaText'" class="form-field">
           <div class="d-flex">
-            <div class="mt-5">{{'app.yourrecommendedid'| translate}} </div>
+            <div class="mt-5">Your Recommended Onemoney ID is…
+            </div>
             <img src="assets/images/svgs/success.svg" alt="Success Sign" class="pl-10" />
           </div>
           <div>{{field.label | translate}}</div>
@@ -150,10 +151,11 @@
           <span *ngIf="field.key !== 'acceptTerms' && field.key !== 'acceptHDFCTerms'">{{ "app."+field.label | translate
             }}</span>
           <br />
-          <span *ngIf="field.key == 'acceptTerms'">{{ 'app.iAgreeToOnemoney' | translate }}
+          <span *ngIf="field.key == 'acceptTerms'">
+            I agree to Onemoney
             <a class="form__terms-and-conditions-text websdk-customcss-link" id="oneLink"
               href="https://www.onemoney.in/tandc.html" target="_blank" rel="noopener noreferrer">
-              {{ 'app.termsAndConditions' | translate }}
+              Terms and Conditions
             </a>
           </span>
           <div *ngIf="isInvalid(formGroup.controls[field.key],

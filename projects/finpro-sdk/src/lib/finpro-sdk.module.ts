@@ -30,6 +30,7 @@ import { FinproSdkComponent } from './finpro-sdk.component';
 import { FormComponent } from '../app/util-components/form/form.component';
 import { DiscoverAccountComponent } from '../app/pages/account-link/components/discover-account/discover-account.component';
 import { DiscoverAccountsComponent } from '../app/pages/account-link/components/discover-accounts/discover-accounts.component';
+import { SignupComponent } from '../app/pages/signup/signup.component';
 
 
 
@@ -37,7 +38,7 @@ import { DiscoverAccountsComponent } from '../app/pages/account-link/components/
 
 @NgModule({
   declarations: [
-
+    SignupComponent,
     FinproSdkComponent,
     AahandleComponent,
     AuthenticationComponent,

@@ -26,3 +26,51 @@
         }
      }
    }
+
+.logo-format {
+    width: 50%;
+    float: right;
+}
+
+.text-primary {
+    color: #079AFF;
+}
+
+.w-500 {
+    width: 500px !important;
+}
+
+.mt-100 {
+    margin-top: 100px !important;
+}
+
+@media (max-width: 767px){
+    .w-500 {
+        width: 370px !important;
+    }
+}
+
+body {
+    background: #fff;
+    color: #666666;
+    font-family: "SansProRegular";
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+}
+
+.poweredby-logo {
+    top: 100px;
+}
+
+.cursor--pointer {
+    cursor: pointer;
+}
+.poweredby-logo {
+    position: absolute;
+    right: 0;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
