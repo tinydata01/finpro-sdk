@@ -11,27 +11,28 @@
       </div>
       <div class="mt-10 d-flex" *ngFor="let itm of acc.itm;let j=index">
         <div class="checkbox">
-          <input type="checkbox" class="input-checkbox-value" id="discovered{{i}}{{j}}" />
+          <input type="checkbox" class="input-checkbox-value" id="discovered{{i}}{{j}}"
+            (click)="accountCheck($event,accRefNumber,i,j,'discoveredAccounts')" />
           <label for="discovered{{i}}{{j}}">{{(acc?.itm[j].accType == "DEFAULT" ? "TERM DEPOSIT" :
             acc?.itm[j].accType)}} Account No :
             <span> {{acc?.itm[j].maskedAccNumber}}</span></label>
         </div>
 
       </div>
-      <div *ngIf="!displayLinked[i]" class="link-account cursor--pointer" (click)="sendOTPToLink(i,'sendOTP')"><a
-          class="link-text">Link</a></div>
+      <div *ngIf="!displayLinked[i]" class="link-account cursor--pointer link-text"
+        (click)="sendOTPToLink(i,'sendOTP')">Link</div>
       <div *ngIf="displayLinked[i]" class="link-account d-flex" style="left: 450px;">
         <img src="../../../../../assets/images/pngs/check-mark.png" class="linked-account-img">
-        <span class="linked-account-text">{{'app.linked'|translate}}</span>
+        <span class="linked-account-text">Linked</span>
       </div>
     </div>
     <div *ngIf="displayOTP[i]">
       <div class="d-flex">
-        <b>{{'app.otp'|translate}}: </b>
+        <b>OTP: </b>
         <app-custom-otp [settings]="settings" (inputChange)="onInputChange($event)"
           (keydown)="keyDownFunction($event,i)"></app-custom-otp>
         <button id="sendotp" class="primary__button cursor--pointer otp-btn" (click)="sendOtp(i)"
-          type="submit">{{'app.submit'|translate}}</button>
+          type="submit">Submit</button>
 
       </div>
       <div class="error-msg" *ngIf="submitted && (!enteredOtp || enteredOtp.length < settings.length)">
@@ -39,7 +40,7 @@
       </div>
       <div class="mt-5">
         <span class="resend__otp  link-content d-flex" (click)="sendOTPToLink(i,'resendOTP')">
-          {{ 'app.resendOTP' | translate }}
+          Resend OTP
         </span>
       </div>
     </div>
@@ -102,7 +103,8 @@
         </div>
         <div class="mt-10 d-flex" *ngFor="let itm of linkedAc.itm;let j=index">
           <div class="checkbox">
-            <input type="checkbox" class="input-checkbox-value" id="linked{{k}}{{j}}" />
+            <input type="checkbox" class="input-checkbox-value" id="linked{{k}}{{j}}"
+              (click)="accountCheck($event,accRefNumber,k,j,'LinkedAccount')" />
             <label for="linked{{k}}{{j}}">{{(linkedAc?.itm[j].accType == "DEFAULT" ? "TERM DEPOSIT" :
               linkedAc?.itm[j].accType) }} Account No :
               <span> {{linkedAc?.itm[j].maskedAccNumber}}</span></label>
@@ -132,7 +134,7 @@
 <app-custom-overlay class="action__dialog" *ngIf="showVpinPopup">
   <div class="consent-action-popup">
     <div class="d-flex">
-      <div class="consent-action-popup-heading">{{ 'app.enterYourOtp' | translate}}
+      <div class="consent-action-popup-heading">Enter your OTP
       </div>
       <div class="close-btn cursor--pointer" title="close" (click)="closeVpinPopup()">
         <img class="close-btn-icon" src="../../../../../assets/images/pngs/close-button.png">
@@ -146,14 +148,12 @@
     </div>
     <div class="error-msg otp__error"
       *ngIf="consentActionSubmitted && ( !consentActionOtp || consentActionOtp.length < settings.length)">
-      {{ 'app.pleaseEnterValidOTP' | translate }}
+      Please Enter Valid OTP
     </div>
-    <div class="consent-popup-forgot-section  cursor--pointer" id="resendOTPId">{{
-      'app.resendOTP' |
-      translate}}</div>
+    <div class="consent-popup-forgot-section  cursor--pointer" id="resendOTPId">Resend OTP</div>
     <button class="custom-btn btn-primary consent-action-button cursor--pointer" id="submitOTPId" type="submit"
       (click)="performAction()">
-      {{ 'app.submit' | translate }}
+      Submit
     </button>
   </div>
 </app-custom-overlay>
