@@ -170,6 +170,37 @@
           }
         }
       }
+    },
+    "onemoneyweb-sdk": {
+      "projectType": "library",
+      "root": "projects/onemoneyweb-sdk",
+      "sourceRoot": "projects/onemoneyweb-sdk/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/onemoneyweb-sdk/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/onemoneyweb-sdk/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/onemoneyweb-sdk/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/onemoneyweb-sdk/src/test.ts",
+            "tsConfig": "projects/onemoneyweb-sdk/tsconfig.spec.json",
+            "karmaConfig": "projects/onemoneyweb-sdk/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "finpro-lib"
