@@ -32,6 +32,8 @@ export class LoginComponent implements OnInit {
     url: "login",
     username: "9032098230",
   }
+  logo: string;
+  noHeight: boolean;
 
   constructor(
     public formDefinationService: FormDefinationService,
@@ -65,10 +67,17 @@ export class LoginComponent implements OnInit {
   sessionId: any;
 
   ngOnInit() {
+    this.logo = '../../../assets/images/pngs/logo.png'
     localStorage.removeItem("LinkedAccounts");
     localStorage.removeItem("vuaData");
     localStorage.removeItem("sessionId");
+    if (environment.library) {
+      this.noHeight = true;
+    }
+  }
 
+  navigateToLoginPage() {
+    this.router.navigate(['/login'])
   }
 
   /**

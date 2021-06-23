@@ -53,7 +53,7 @@ export class DiscoverAccountsComponent implements OnInit {
     // this.getListOfLinkedAccounts();
     this.userMobileNumber = localStorage.getItem("mobileNumber");
     this.vuaData = localStorage.getItem("vuaData");
-    this.getRequestConsent();
+    // this.getRequestConsent();
 
 
   }
@@ -399,18 +399,18 @@ export class DiscoverAccountsComponent implements OnInit {
       this.linkedAccountsLength = this.linkedAccounts.length;
     })
   }
-  getRequestConsent() {
-    this.httpService.requestConsent(this.userMobileNumber, this.vuaData).subscribe(res => {
-      if (localStorage.getItem("consentHandle") == "") {
-        localStorage.setItem("consentHandle", res.data.consent_handle);
-        this.showConsentDetail();
-      }
-      else {
-        localStorage.removeItem("consentHandle");
-        localStorage.setItem("consentHandle", res.data.consent_handle);
-        this.showConsentDetail();
-      }
+  // getRequestConsent() {
+  //   this.httpService.requestConsent(this.userMobileNumber, this.vuaData).subscribe(res => {
+  //     if (localStorage.getItem("consentHandle") == "") {
+  //       localStorage.setItem("consentHandle", res.data.consent_handle);
+  //       this.showConsentDetail();
+  //     }
+  //     else {
+  //       localStorage.removeItem("consentHandle");
+  //       localStorage.setItem("consentHandle", res.data.consent_handle);
+  //       this.showConsentDetail();
+  //     }
 
-    })
-  }
+  //   })
+  // }
 }

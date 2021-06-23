@@ -80,6 +80,7 @@ export class VerifyMobileNumberComponent implements OnInit {
   sessionId: any;
   linkedAccountLength: any;
   showErrorMessage: boolean = false;
+
   sendOtp() {
     this.submitted = true;
     if (this.enteredOtp.length == this.settings['length']) {
@@ -94,6 +95,10 @@ export class VerifyMobileNumberComponent implements OnInit {
           .subscribe(res => {
             localStorage.removeItem("sessionId");
             localStorage.setItem("sessionId", res["sessionId"]);
+
+            if (localStorage.getItem("sessionId") != null) {
+              this.getRequestConsent();
+            }
             this.router.navigate(['/account-link']);
           },
             (err) => {
@@ -112,7 +117,12 @@ export class VerifyMobileNumberComponent implements OnInit {
           [{ appIdentifier: appData.appIdentifier }], signupData).subscribe(result => {
             localStorage.removeItem("sessionId");
             localStorage.setItem("sessionId", result["sessionId"]);
+
+            if (localStorage.getItem("sessionId") != null) {
+              this.getRequestConsent();
+            }
             this.router.navigate(['/account-link']);
+
           },
             (err) => {
               this.submitted = true;
@@ -123,6 +133,22 @@ export class VerifyMobileNumberComponent implements OnInit {
       }
 
     }
+
+  }
+
+  getRequestConsent() {
+    this.httpService.requestConsent(this.userMobileNumber, this.userMobileNumber + "@onemoney").subscribe(res => {
+      if (localStorage.getItem("consentHandle") == "") {
+        localStorage.setItem("consentHandle", res.data.consent_handle);
+        // this.showConsentDetail();
+      }
+      else {
+        localStorage.removeItem("consentHandle");
+        localStorage.setItem("consentHandle", res.data.consent_handle);
+        // this.showConsentDetail();
+      }
+
+    })
   }
   otpData: any;
   vuaExtension = "@onemoney";

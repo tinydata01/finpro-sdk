@@ -105,3 +105,18 @@
     
     
 }
+
+.poweredby-logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-format{
+    width: 267px;
+}
+
+.noHeight {
+    height: 0;
+    overflow: hidden;
+}

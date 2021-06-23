@@ -350,20 +350,20 @@ export class HttpService {
       'Content-Type': 'application/json',
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      'organizationId': 'LOT0043',
-      'client_id': 'fp_test_5284d0950d45aa8de24f9bf7b4424c0f4e1d0bff',
-      'client_secret': 'f204936f3119534e21034315a1ee4c724980705a42b38b9508c51ed854275661a7ec2184',
-      'appIdentifier': 'com.lot0043.app'
+      "client_id": "27cb60c4a421611872b7b352aa7a78c1dfecb1d1",
+      "client_secret": "ec64eb9efb18d530c52552f2e13d856e0d2ced68",
+      "appIdentifier": "com.moneyone.app",
+      "organisationId": "kotak"
     })
 
     let body = {
-      accountID: "123456",
+      productID: "DR3",
+      accountID: "abcd",
       partyIdentifierType: "MOBILE",
       partyIdentifierValue: mobileNumber,
-      productID: "prod276",
       vua: vua
     }
-    return this.http.post('https://app-test.moneyone.in/finpro_uat/v2/requestconsent', body, { headers: header }).pipe(
+    return this.http.post('https://test.moneyone.in/finpro_test/v2/requestconsent', body, { headers: header }).pipe(
       //  return this.http.post(this.userService.data["finproURL"], body, { headers: header }).pipe(
       map(res => {
         let response: any = res;
