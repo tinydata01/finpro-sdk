@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'consuming-sdk';
+  consentHandleData: string = "";
+
+  constructor() {
+  }
+
+  consentData(valueEmitted) {
+    this.consentHandleData = valueEmitted;
+    console.log(this.consentHandleData);
+  }
 }

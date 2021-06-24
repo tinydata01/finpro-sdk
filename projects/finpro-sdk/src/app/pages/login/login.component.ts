@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { FormDefinationService } from "../../services/form-defination.service";
 import { HttpService } from "../../services/http.service";
 import { Router } from "@angular/router";
@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
   }
   logo: string;
   noHeight: boolean;
+  @Output() consentHandle: EventEmitter<any> = new EventEmitter();
 
   constructor(
     public formDefinationService: FormDefinationService,
@@ -78,6 +79,10 @@ export class LoginComponent implements OnInit {
 
   navigateToLoginPage() {
     this.router.navigate(['/login'])
+  }
+
+  consentData(valueEmitted) {
+    this.consentHandle.emit(valueEmitted);
   }
 
   /**

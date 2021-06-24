@@ -1,4 +1,4 @@
 <!-- <p>Library testing</p> -->
-<lib-finpro-sdk></lib-finpro-sdk>
+<lib-finpro-sdk (consentHandle)="consentData($event)" *ngIf="consentHandleData.length == 0"></lib-finpro-sdk>
 
-<!-- <lib-onemoneyweb-sdk></lib-onemoneyweb-sdk> -->
+<lib-onemoneyweb-sdk *ngIf="consentHandleData.length > 0"></lib-onemoneyweb-sdk>

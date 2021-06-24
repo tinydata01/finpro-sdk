@@ -61,28 +61,22 @@
     <!-- <span class="d-flex justify__content--end link-content" *ngIf="!showDetail" (click)="showConsentDetail()">{{'app.show'|translate}} {{'app.consentDetail'|translate}}</span>
     <span class="d-flex justify__content--end link-content" *ngIf="showDetail" (click)="hideConsentDetail()">{{'app.hide'|translate}} {{'app.consentDetail'|translate}}</span> -->
     <div>
-      <!-- <div *ngFor="let cd of consentDetails;let i=index" class="card-layout mt-10"> -->
-      <div class="card-layout mt-10">
+      <div *ngFor="let cd of consentDetails;let i=index" class="card-layout mt-10">
         <div>
-          <div class="mt-5"><b>Purpose: </b> <span>Wealth management service</span></div>
-          <div class="mt-5"><b>Account Type:</b>
-            <span class="child"> Deposit ,Term-deposit ,Recurring_deposit</span>
-            <!-- <span *ngFor="let fiType of cd.fiTypes" class="child"> {{fiType}}
-              <span class="comma"> ,</span></span> -->
+          <div class="mt-5"><b>Purpose: </b> <span> {{cd.Purpose.text }}</span></div>
+          <div class="mt-5"><b>Account Type: </b>
+            <span *ngFor="let fiType of cd.fiTypes" class="child"> {{fiType }}
+              <span class="comma"> ,</span></span>
           </div>
-          <div class="mt-5"><b>Date Range: </b> from 02 Jun 2020 to 03 Jun 2021
-            <!-- <span>from {{cd.FIDataRange.from | date:'dd MMM
-              yyyy' }} </span><span> to {{cd.FIDataRange.to | date:'dd MMM
-              yyyy' }} </span> -->
-          </div>
+          <div class="mt-5"><b>Date Range: </b> <span>from {{cd.FIDataRange.from | date:'dd MMM yyyy' }} </span><span>
+              to {{cd.FIDataRange.to | date:'dd MMM yyyy' }} </span></div>
           <div class="mt-5"><b>Data Type: </b>
-            <!-- <span *ngFor="let consentType of cd.consentTypes" class="child"> {{consentType }} <span class="comma">
-                ,</span> </span> -->
-            <span class="child">Transactions ,Profile ,Summary</span>
+            <span *ngFor="let consentType of cd.consentTypes" class="child"> {{consentType }} <span class="comma">
+                ,</span> </span>
           </div>
-          <div class="mt-5"><b>Frequency Of Data Pull: </b> <span> Onetime</span></div>
-          <div class="mt-5"><b>Consent Valid upto: </b> <span> 03 Jun 2022</span></div>
-          <div class="mt-5"><b>Data Life: </b> <span> 1 YEAR</span></div>
+          <div class="mt-5"><b>Frequency Of Data Pull: </b> <span> {{cd.fetchType }}</span></div>
+          <div class="mt-5"><b>Consent Valid upto: </b> <span> {{cd.consentExpiry| date:'dd MMM yyyy' }}</span></div>
+          <div class="mt-5"><b>Data Life: </b> <span> {{cd.DataLife.value}} {{cd.DataLife.unit}}</span></div>
         </div>
 
       </div>
@@ -120,7 +114,7 @@
       (click)="onConsentActionClicked('CONSENT_CONFIRMED','sendOTP')">
       Approve
     </button>
-    <button class="custom-btn btn-danger ml-25" id="rejectId" type="submit" [disabled]="btnDisabled"
+    <button class="custom-btn btn-danger ml-25" id="rejectId" type="submit"
       (click)="onConsentActionClicked('CONSENT_REJECT','sendOTP')">
       Reject
     </button>

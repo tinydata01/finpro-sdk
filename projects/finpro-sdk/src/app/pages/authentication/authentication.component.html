@@ -8,7 +8,7 @@
     <div class="right-side-section">
       <div class="form-layout form-content" *ngIf="formLayoutData && formLayoutData.formType">
         <div ngSwitch="login">
-          <app-login></app-login>
+          <app-login (consentHandle)="consentData($event)"></app-login>
         </div>
       </div>
     </div>

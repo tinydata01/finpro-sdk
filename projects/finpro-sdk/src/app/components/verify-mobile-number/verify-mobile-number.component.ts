@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from "@angular/core";
+import { Component, OnInit, Input, ChangeDetectorRef, Output, EventEmitter } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { HttpService } from "../../services/http.service";
@@ -22,6 +22,7 @@ export class VerifyMobileNumberComponent implements OnInit {
   userMobileNumber: any;
   bankName: string;
   submitted: boolean = false;
+  @Output() consentHandle: EventEmitter<any> = new EventEmitter();
   constructor(
     private httpService: HttpService,
     private oneMoneyService: OnemoneyWebsdkService,
@@ -140,11 +141,13 @@ export class VerifyMobileNumberComponent implements OnInit {
     this.httpService.requestConsent(this.userMobileNumber, this.userMobileNumber + "@onemoney").subscribe(res => {
       if (localStorage.getItem("consentHandle") == "") {
         localStorage.setItem("consentHandle", res.data.consent_handle);
+        this.consentHandle.emit(res.data.consent_handle);
         // this.showConsentDetail();
       }
       else {
         localStorage.removeItem("consentHandle");
         localStorage.setItem("consentHandle", res.data.consent_handle);
+        this.consentHandle.emit(res.data.consent_handle);
         // this.showConsentDetail();
       }
 

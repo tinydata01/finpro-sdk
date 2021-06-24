@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from "@angular/core";
+import { Component, OnInit, Input, ChangeDetectorRef, Output, EventEmitter } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { CommonService } from '../../services/common.service';
@@ -7,8 +7,6 @@ import { DataService } from '../../services/data.service';
 import { utilService } from '../../services/util.service';
 import { routePaths } from '../../constants/routing.constant';
 import { environment } from '../../../environments/environment';
-
-
 
 @Component({
   selector: "app-authentication",
@@ -19,6 +17,7 @@ export class AuthenticationComponent implements OnInit {
   logo: any
   consentId: any;
   noHeight: boolean;
+  @Output() consentHandle: EventEmitter<any> = new EventEmitter();
   showProfileOverlay: boolean = false;
   selectedLanguage: any;
   default: any;
@@ -95,6 +94,10 @@ export class AuthenticationComponent implements OnInit {
       this.noHeight = true;
     }
     this.getlang();
+  }
+
+  consentData(valueEmitted) {
+    this.consentHandle.emit(valueEmitted);
   }
 
   navigateToLoginPage() {
