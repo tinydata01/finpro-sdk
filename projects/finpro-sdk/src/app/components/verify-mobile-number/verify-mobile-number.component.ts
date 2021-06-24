@@ -72,10 +72,8 @@ export class VerifyMobileNumberComponent implements OnInit {
       this.enteredOtp = e;
     } else if (e == -1) {
       // if e == -1, timer has stopped
-      //   console.log(e, "resend button enables");
     } else if (e == -2) {
       // e == -2, button click handle
-      //   console.log("resend otp");
     }
   }
   sessionId: any;

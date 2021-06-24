@@ -144,7 +144,6 @@ export class DiscoverAccountsComponent implements OnInit {
     this.checkAccountsLinked = { 'accounts': accountToLink };
   }
   sendOTPToLink(i, flag) {
-    console.log("triggered", i);
     // this.btnDisabled = false;
     this.displayOTP[i] = true;
     var accountToLink = [{
@@ -157,7 +156,6 @@ export class DiscoverAccountsComponent implements OnInit {
         userInfo: {}
       }
     }];
-    console.log("accountList", this.accountList);
     this.accountList.forEach(item => {
       accountToLink.push({
         type: item.accType,
@@ -170,9 +168,7 @@ export class DiscoverAccountsComponent implements OnInit {
         }
       })
     })
-    console.log("dataaccount", accountToLink);
     accountToLink.splice(0, 1);
-    console.log("dataaccount1", accountToLink);
     let accounts = { 'accounts': accountToLink };
     if (accountToLink.length != 0) {
       this.oneMoneyService.multiAccountlink(accounts).subscribe(res => {
@@ -192,7 +188,6 @@ export class DiscoverAccountsComponent implements OnInit {
       this.displayOTP[i] = false;
       this.loader.showToast(toastStatuses.ERROR, "pleaseSelectOneAccountAtleast");
     }
-    console.log("displayOTP[i]", this.displayOTP[i]);
   }
   dataVerify: any;
   enteredOtp: any = '';
@@ -202,17 +197,6 @@ export class DiscoverAccountsComponent implements OnInit {
     if (e.length == this.settings.length) {
       this.enteredOtp = e;
     }
-    // this.enteredOtp = ''
-    // if (e.length == this.settings.length) {
-    //   // e will emit values entered as otp and,
-    //   this.enteredOtp = e;
-    // } else if (e == -1) {
-    //   // if e == -1, timer has stopped
-    //   //   console.log(e, "resend button enables");
-    // } else if (e == -2) {
-    //   // e == -2, button click handle
-    //   //   console.log("resend otp");
-    // }
   }
 
 
@@ -318,7 +302,6 @@ export class DiscoverAccountsComponent implements OnInit {
 
         this.oneMoneyService.approve(body)
           .subscribe(res => {
-            console.log("APPROVE", res)
             if (res.status == "SUCCESS") {
               this.loader.showToast(toastStatuses.SUCCESS, 'consentRequestAcceptedSuccessfully');
               this.router.navigate(['/welcome-screen']);

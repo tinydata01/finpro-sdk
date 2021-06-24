@@ -172,7 +172,6 @@ export class FIListComponent implements OnInit {
     this.selectedFIs = this.FIs.filter((FI) => {
       return FI.selected;
     });
-    console.log(this.selectedFIs)
     this.linkHelper.setData(this.linkHelper.dataObj.SELECTED_ACCOUNTS, this.selectedFIs)
     if (this.selectedFIs.length) {
       this.linkHelper.markCurrentStepAsDone(true);

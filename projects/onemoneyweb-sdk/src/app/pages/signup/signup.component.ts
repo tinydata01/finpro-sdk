@@ -67,7 +67,6 @@ export class SignupComponent implements OnInit {
     let form = event.formData;
     localStorage.setItem("consentHandle", "");
     this.vuaData = form.controls.VUA.value + this.vuaExtension;
-    // console.log(form);
     let data = {
       name: form.controls.userName.value,
       phone_number: form.controls.mobileNumber.value,
@@ -85,24 +84,25 @@ export class SignupComponent implements OnInit {
     this.oneMoneyService.userRegistration(appData.organisationid, appData.client_id, appData.client_secret,
       [{ appIdentifier: appData.appIdentifier }], data).subscribe(
         (response => {
-          if(response.status==true){
-          this.userDetail = response;
-          this.loader.showToast(toastStatuses.SUCCESS, 'otpSentSuccessfully');
-          let signupData = {
-            name: form.controls.userName.value,
-            phone_number: form.controls.mobileNumber.value,
-            terms_and_conditions: form.controls.acceptTerms.value,
-            otp_reference: this.userDetail.otp_reference,
-            vua: this.vuaData,
-            url: "signup"
-          };
-          this.isVerifyNumber = true;
-          this.signupData = signupData;
-          
-        }
-        else{
-          this.loader.showToast(toastStatuses.ERROR, 'theMobileNumberAlreadyExistsPleaseUse');
-        }}));
+          if (response.status == true) {
+            this.userDetail = response;
+            this.loader.showToast(toastStatuses.SUCCESS, 'otpSentSuccessfully');
+            let signupData = {
+              name: form.controls.userName.value,
+              phone_number: form.controls.mobileNumber.value,
+              terms_and_conditions: form.controls.acceptTerms.value,
+              otp_reference: this.userDetail.otp_reference,
+              vua: this.vuaData,
+              url: "signup"
+            };
+            this.isVerifyNumber = true;
+            this.signupData = signupData;
+
+          }
+          else {
+            this.loader.showToast(toastStatuses.ERROR, 'theMobileNumberAlreadyExistsPleaseUse');
+          }
+        }));
 
   }
 

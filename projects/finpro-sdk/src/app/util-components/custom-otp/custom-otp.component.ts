@@ -87,7 +87,6 @@ export class CustomOtpComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   writeValue(value) {
-    console.log("value in write", value)
     if (value) {
       this.values = [];
       for (let index = 0; index < this.defaultLength; index++) {
@@ -110,7 +109,7 @@ export class CustomOtpComponent implements OnInit, OnChanges, AfterViewInit {
    */
   tellParent(value) {
     this.value = value;
-    this.settings.reset=false;
+    this.settings.reset = false;
     this.inputChange.emit(this.value);
   }
 
@@ -191,7 +190,7 @@ export class CustomOtpComponent implements OnInit, OnChanges, AfterViewInit {
   ngOnChanges() {
 
     this.forgotPinDemoValues();
-    
+
   }
   ngDoCheck() {
     if (this.settings.reset == true) {

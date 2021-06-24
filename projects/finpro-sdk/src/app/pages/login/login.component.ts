@@ -112,7 +112,6 @@ export class LoginComponent implements OnInit {
       //     this.oneMoneyService.verifyVua("onemoney","b5577e63f4533dfee3e2a56e28483add9242e7eb",
       // "f48a09b6647814304e1eba09231d971709558e20a4c202acc97861a4af34b6ac59acc8f4",
       //  [{appIdentifier:"com.onemoney.app"}],{vua:'8919319136@onemoney'}).subscribe((res)=>{
-      //   console.log(res)
       // })
       this.httpService.checkProfile({
         type: 'POST',

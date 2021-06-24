@@ -12,7 +12,7 @@ declare var webSDKCustomCss;
   styleUrls: ["./form.component.scss"]
 })
 export class FormComponent implements OnInit, OnChanges, OnDestroy {
-  production:boolean = false
+  production: boolean = false
   @Input() formGroup;
   @Input() formInputs;
   @Input() fi;
@@ -26,20 +26,20 @@ export class FormComponent implements OnInit, OnChanges, OnDestroy {
   @Input() isDiscovery: boolean = false;
   @Output() submitEvent: EventEmitter<any> = new EventEmitter();
   @Output() cancelFormEvent: EventEmitter<any> = new EventEmitter();
-  bankName:string;
+  bankName: string;
   highlightLinkedAccounts;
   detectChangesForLib: any;
   formSubmitAttempt: boolean = false;
   hideForgotPin: boolean = false;
   userNumber: any;
-  aahandle:any;
-  constructor(private router: Router, private ref: ChangeDetectorRef, private userService : UserService) { 
-    this.bankName= this.userService.data["bankName"];
-   }
+  aahandle: any;
+  constructor(private router: Router, private ref: ChangeDetectorRef, private userService: UserService) {
+    this.bankName = this.userService.data["bankName"];
+  }
 
   ngOnInit() {
     this.setCallBackFunctions(this.formInputs);
- 
+
     // To detect changes in custom web element which is used as library
     if (this.production) {
       this.hideForgotPin = true;
@@ -76,7 +76,6 @@ export class FormComponent implements OnInit, OnChanges, OnDestroy {
    * @desc This function will submit the form after checking for all the validations
    */
   submit(event): void {
-    console.log(this.formGroup, event, this.isDiscovery, this.fi);
     this.formSubmitAttempt = true;
     if (this.formGroup.valid) {
       if (this.isDiscovery) {

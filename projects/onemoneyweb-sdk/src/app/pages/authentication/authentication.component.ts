@@ -16,7 +16,7 @@ import { environment } from '../../../environments/environment';
   styleUrls: ["./authentication.component.scss"]
 })
 export class AuthenticationComponent implements OnInit {
-  logo:any
+  logo: any
   consentId: any;
   noHeight: boolean;
   showProfileOverlay: boolean = false;
@@ -25,15 +25,15 @@ export class AuthenticationComponent implements OnInit {
   languages = [{ key: "en", value: "English" },
   { key: "hi", value: "हिंदी" }]
   hideForgotPin: boolean = false;
- 
+
   showAaHandle: boolean = false;
   @Input() set type(value: any) {
     if (value) {
       if (value == "signup") {
-      //  this.formType = 'register';
+        //  this.formType = 'register';
 
         this.formLayoutData = false;
-        
+
       } else if (value == "login") {
         this.formType = 'login'
       }
@@ -57,7 +57,7 @@ export class AuthenticationComponent implements OnInit {
   formType: any;
   formLayoutData: any;
   showHeaderText: boolean = true;
-  showSignupForm:boolean=false;
+  showSignupForm: boolean = false;
   autheticationData: any = authenticationData;
   constructor(private router: Router, public commonService: CommonService, private cd: ChangeDetectorRef, private dataService: DataService,
     private utils: utilService) {
@@ -65,7 +65,7 @@ export class AuthenticationComponent implements OnInit {
       var currentRoute: string = this.router.url;
       // Form heading based on current route
       if (this.utils.searchString(currentRoute, routePaths.SIGNUP)) {
-       // this.formType = 'register';
+        // this.formType = 'register';
         this.showSignupForm = true;
         this.showAaHandle = false;
       } else if (this.utils.searchString(currentRoute, routePaths.LOGIN)) {
@@ -81,7 +81,7 @@ export class AuthenticationComponent implements OnInit {
       }
       this.formLayoutData = this.autheticationData[this.formType];
     });
-   
+
   }
 
   ngOnInit() {
@@ -103,7 +103,6 @@ export class AuthenticationComponent implements OnInit {
   }
   getlang() {
     this.default = this.commonService.getDefaultLanguage()
-    //console.log("this.default" + this.default)
     if (this.default == "en") {
       this.selectedLanguage = { key: "en", value: "English" };
     }
@@ -134,5 +133,5 @@ export class AuthenticationComponent implements OnInit {
     this.showProfileOverlay = false;
   }
 
-  
+
 }

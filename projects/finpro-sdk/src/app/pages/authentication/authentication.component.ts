@@ -105,7 +105,6 @@ export class AuthenticationComponent implements OnInit {
   }
   getlang() {
     this.default = this.commonService.getDefaultLanguage()
-    //console.log("this.default" + this.default)
     if (this.default == "en") {
       this.selectedLanguage = { key: "en", value: "English" };
     }

@@ -176,7 +176,7 @@ export class HttpService {
         )
         .pipe(catchError(this.handleError.bind(this)));
     } catch (error) {
-      //   console.log(error);
+      console.log(error);
     }
   }
 
@@ -220,12 +220,11 @@ export class HttpService {
         )
         .pipe(catchError(this.handleError.bind(this)));
     } catch (error) {
-      //   console.log(error);
+      console.log(error);
     }
   }
 
   checkProfile(options) {
-    console.log('optionstest', options)
     this.url = options?.url
     this.headers = new HttpHeaders({
       "Content-Type": "application/json",
@@ -258,7 +257,7 @@ export class HttpService {
         )
         .pipe(catchError(this.handleError.bind(this)));
     } catch (error) {
-      //   console.log(error);
+      console.log(error);
     }
   }
 
@@ -266,7 +265,7 @@ export class HttpService {
     this.checkForSessionError(obj.error);
     this.hideThrobber();
     // this.utils.commonConfig.isLoader = false;
-    // console.log(obj.error);
+    console.log(obj.error);
     return of({ status: false, errorMessage: obj.error.errorMessage, errorCode: obj.error.errorCode });
   }
 
@@ -320,11 +319,9 @@ export class HttpService {
         }
         return url;
       } else {
-        // console.log("Path could not be found in the list");
         return "Path could not be found in the list";
       }
     } else {
-      //   console.log("Path not Defined");
       return "Path not Defined";
     }
   }

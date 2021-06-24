@@ -116,7 +116,6 @@ export class LinkingStepperComponent implements OnInit {
         localStorage.setItem('fips', JSON.stringify(this.FIs))
       }
     })
-    console.log(this.FIs);
     let category = "STRONG";
     let type = "MOBILE";
     let value = this.userMobileNumber;
@@ -153,17 +152,16 @@ export class LinkingStepperComponent implements OnInit {
     //     this.http.hideThrobber();
     //   })
     this.oneMoneyService.discoverAccountFIP([{ category: category, type: type, value: value }])
-    .subscribe(result => {
-      console.log('discover accounts', result)
-      this.discoveredAccounts = result.accounts;
-      var account = this.discoveredAccounts.map(x => x.data);
-      this.discoveredAccounts = account.map((item) => item.fipId).filter((item, i, ar) => ar.indexOf(item) === i).sort((a, b) => a - b).map(item => {
-        let new_list = account.filter(itm => itm.fipId == item).map(itm => itm);
-        return { fipId: item, itm: new_list }
-      });
-      this.discoveredAccountsLength = this.discoveredAccounts.length;
-      this.http.hideThrobber();
-    })
+      .subscribe(result => {
+        this.discoveredAccounts = result.accounts;
+        var account = this.discoveredAccounts.map(x => x.data);
+        this.discoveredAccounts = account.map((item) => item.fipId).filter((item, i, ar) => ar.indexOf(item) === i).sort((a, b) => a - b).map(item => {
+          let new_list = account.filter(itm => itm.fipId == item).map(itm => itm);
+          return { fipId: item, itm: new_list }
+        });
+        this.discoveredAccountsLength = this.discoveredAccounts.length;
+        this.http.hideThrobber();
+      })
 
   }
 

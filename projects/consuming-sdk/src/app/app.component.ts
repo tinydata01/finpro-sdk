@@ -14,6 +14,5 @@ export class AppComponent {
 
   consentData(valueEmitted) {
     this.consentHandleData = valueEmitted;
-    console.log(this.consentHandleData);
   }
 }

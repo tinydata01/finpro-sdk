@@ -18,12 +18,12 @@
             <span> {{acc?.itm[j].maskedAccNumber}}</span></label>
         </div>
 
-      </div>
-      <div *ngIf="!displayLinked[i]" class="link-account cursor--pointer link-text"
-        (click)="sendOTPToLink(i,'sendOTP')">Link</div>
-      <div *ngIf="displayLinked[i]" class="link-account d-flex" style="left: 450px;">
-        <img src="../../../../../assets/images/pngs/check-mark.png" class="linked-account-img">
-        <span class="linked-account-text">Linked</span>
+        <div *ngIf="!displayLinked[i]" class="link-account cursor--pointer link-text"
+          (click)="sendOTPToLink(i,'sendOTP')" id="displayLinked[i]">Link</div>
+        <div *ngIf="displayLinked[i]" class="link-account d-flex" style="left: 450px;">
+          <img src="../../../../../assets/images/pngs/check-mark.png" class="linked-account-img">
+          <span class="linked-account-text">Linked</span>
+        </div>
       </div>
     </div>
     <div *ngIf="displayOTP[i]">

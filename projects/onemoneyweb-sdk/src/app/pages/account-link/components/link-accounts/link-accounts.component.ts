@@ -16,7 +16,7 @@ export class LinkAccountsComponent implements OnInit {
   constructor(
     private formDefinationService: FormDefinationService,
     private httpService: HttpService,
-     private linkingStepperService: LinkingStepperHelperService
+    private linkingStepperService: LinkingStepperHelperService
   ) { }
 
   public settings = {
@@ -33,7 +33,6 @@ export class LinkAccountsComponent implements OnInit {
     this.discoverdAccounts = this.linkingStepperService.getData(
       "discoveredAccounts"
     );
-    // console.log(this.discoverdAccounts);
     this.massageDiscoverData(this.discoverdAccounts);
   }
 
@@ -148,7 +147,6 @@ export class LinkAccountsComponent implements OnInit {
    */
   buildFormdData(eachFi) {
     let linkAccountFormConfig = [];
-    // console.log(eachFi);
     eachFi.discoveredAccounts.forEach(account => {
       let formInputConfig = {
         type: "checkbox",

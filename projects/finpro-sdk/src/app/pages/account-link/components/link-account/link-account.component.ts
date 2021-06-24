@@ -39,8 +39,8 @@ export class LinkAccountComponent implements OnInit {
   submitted = false;
   showConsentActionPopup: boolean;
   accActionDetails: any;
-  opened:boolean = true;
-  timer:any;
+  opened: boolean = true;
+  timer: any;
 
   @Input() set discoveredAccs(value: any) {
     if (value && Object.keys(value).length) {
@@ -49,11 +49,12 @@ export class LinkAccountComponent implements OnInit {
     }
   }
 
-  ngOnInit() { 
-  clearTimeout(this.timer)
-  this.timer = setTimeout(()=>{
-    this.opened = false;
-  }, 60000);}
+  ngOnInit() {
+    clearTimeout(this.timer)
+    this.timer = setTimeout(() => {
+      this.opened = false;
+    }, 60000);
+  }
 
   /**
    * stucturing FIs data for discovery flow
@@ -160,7 +161,7 @@ export class LinkAccountComponent implements OnInit {
       };
       this.changeFormStaus(formStatuses.PENDING, selectedFi);
       this.httpService.makeHttpRequestWOLoader(options).subscribe(res => {
-        if(environment.library) { webSDKCustomCss(); }
+        if (environment.library) { webSDKCustomCss(); }
         if (res && res.status == true) {
           this.commonService.updateUserAccounts();
           this.changeFormStaus(formStatuses.DONE, selectedFi);
@@ -168,7 +169,7 @@ export class LinkAccountComponent implements OnInit {
         } else {
           this.submitted = false;
           this.loader.showToast(toastStatuses.ERROR, this.commonService.getErrorStringFor(res.errorCode, options.url));
-          if(res.errorCode == "INVALID_OTP") {
+          if (res.errorCode == "INVALID_OTP") {
             this.reEnterOtpField();
             this.changeFormStaus(formStatuses.SEND_OTP, selectedFi);
           } else {
@@ -194,7 +195,6 @@ export class LinkAccountComponent implements OnInit {
   }
 
   returnSelectedGSTAccounts(formValue, discoveredAccounts) {
-    console.log("formValue", formValue)
     let selectedAccounts = [];
     discoveredAccounts.forEach(account => {
       if (this.hasKeySetTo(formValue, account.accRefNumber, true)) {
@@ -228,7 +228,6 @@ export class LinkAccountComponent implements OnInit {
     let linkAccountFormConfig = [];
     let gstinAccountFormConfig = [];
     let gstinAccountFormConfigGroup = [];
-    // console.log(eachFi);
     let unlinked = eachFi.discoveredAccounts.filter((acc) => !acc.linked);
     unlinked.forEach(account => {
       let formInputConfig = {
@@ -245,7 +244,7 @@ export class LinkAccountComponent implements OnInit {
         validators: []
       };
       // TODO: Make auto selected & editable false for already linked accounts
-      if(account.accType != "GST") {
+      if (account.accType != "GST") {
         linkAccountFormConfig.push(formInputConfig);
       }
     });
@@ -276,69 +275,69 @@ export class LinkAccountComponent implements OnInit {
     })
 
     gstinAccounts.forEach(account => {
-        let formInputConfig = {
-          type: "checkbox",
-          placeholder: "Name",
-          label: this.getLabel(account),
-          required: true,
-          key: account.accRefNumber,
-          id: account.maskedAccNumber,
-          labelImage: "",
-          value: true,
-          controlType: "checkbox",
-          editable: true,
-          validators: []
-        };
-      
-        gstinAccountFormConfig.push(formInputConfig);
+      let formInputConfig = {
+        type: "checkbox",
+        placeholder: "Name",
+        label: this.getLabel(account),
+        required: true,
+        key: account.accRefNumber,
+        id: account.maskedAccNumber,
+        labelImage: "",
+        value: true,
+        controlType: "checkbox",
+        editable: true,
+        validators: []
+      };
 
-        gstinAccountFormConfig.push({
-          type: "text",
-          placeholder: "",
-          label: "Unique Username",
-          required: true,
-          editable: true,
-          key: "userName",
-          id: "",
-          value: "",
-          controlType: "inputTextWithLeftLabel",
-          emptyValueMessage: "pleaseEnterValue",
-          validators: [Validators.required, FormDefinationService.validateUniqueUsername],
-          callback: ""
-        });
+      gstinAccountFormConfig.push(formInputConfig);
 
-        gstinAccountFormConfig.push({
-          type: "button",
-          placeholder: "",
-          label: buttonLabel,
-          required: true,
-          editable: true,
-          key: "",
-          id: "",
-          value: "",
-          controlType: "submitButton",
-          validators: [],
-          callback: ""
-        });
+      gstinAccountFormConfig.push({
+        type: "text",
+        placeholder: "",
+        label: "Unique Username",
+        required: true,
+        editable: true,
+        key: "userName",
+        id: "",
+        value: "",
+        controlType: "inputTextWithLeftLabel",
+        emptyValueMessage: "pleaseEnterValue",
+        validators: [Validators.required, FormDefinationService.validateUniqueUsername],
+        callback: ""
+      });
 
-        let gstlinkAccountForm = {
-          formGroup: null,
-          formInputs: gstinAccountFormConfig
-        };
-        gstlinkAccountForm.formGroup = this.formDefinationService.toReactiveForm(
-          gstinAccountFormConfig
-        );
-        gstinAccountFormConfigGroup.push(gstlinkAccountForm)
-        gstinAccountFormConfig = [];
+      gstinAccountFormConfig.push({
+        type: "button",
+        placeholder: "",
+        label: buttonLabel,
+        required: true,
+        editable: true,
+        key: "",
+        id: "",
+        value: "",
+        controlType: "submitButton",
+        validators: [],
+        callback: ""
+      });
+
+      let gstlinkAccountForm = {
+        formGroup: null,
+        formInputs: gstinAccountFormConfig
+      };
+      gstlinkAccountForm.formGroup = this.formDefinationService.toReactiveForm(
+        gstinAccountFormConfig
+      );
+      gstinAccountFormConfigGroup.push(gstlinkAccountForm)
+      gstinAccountFormConfig = [];
 
     });
-    
+
     eachFi["gstlinkAccountForm"] = gstinAccountFormConfigGroup;
-    
+
 
     linkAccountForm.formInputs = linkAccountFormConfig;
     eachFi["linkAccountForm"] = linkAccountForm;
-    
+
     this.changeFormStaus(formStatuses.NOT_VERIFIED, eachFi);
   }
 
@@ -347,10 +346,9 @@ export class LinkAccountComponent implements OnInit {
     let anyLinkAccount;
     let selectedFormGroup = event.index;
     let fi = event.fi;
-    
+
     for (let [key, value] of Object.entries(fi.formdata.value)) {
       fi.discoveredAccounts.forEach(discoveredAccount => {
-        // console.log("discoveraccounts",discoveredAccount, fi.gstlinkAccountForm[selectedFormGroup].formGroup.value.userName)
         if (value == true && discoveredAccount.accRefNumber == key) {
           anyLinkAccount = true;
           discoveredAccount["linkRequested"] = true;
@@ -363,26 +361,25 @@ export class LinkAccountComponent implements OnInit {
     if (anyLinkAccount) {
       this.changeFormStaus(formStatuses.PENDING, fi);
       fi.gstlinkAccountForm.forEach((gst, index) => {
-          gst.formInputs.forEach(field => {
-            field.editable = false;
-          })
+        gst.formInputs.forEach(field => {
+          field.editable = false;
+        })
       });
       if (fi.formStatus != formStatuses.SEND_OTP && !resend) {
-        fi.gstlinkAccountForm.forEach(gst => { 
+        fi.gstlinkAccountForm.forEach(gst => {
           gst.formInputs.pop();
         })
       }
-      
+
       let data = {
-        discoveredAccounts: this.returnSelectedGSTAccounts(fi.gstlinkAccountForm[selectedFormGroup].formGroup.value, fi.discoveredAccounts,                                
-          ),
+        discoveredAccounts: this.returnSelectedGSTAccounts(fi.gstlinkAccountForm[selectedFormGroup].formGroup.value, fi.discoveredAccounts,
+        ),
         // userName: fi.gstlinkAccountForm[selectedFormGroup].formGroup.value.userName,
         fip: {
           FIPName: fi.fipName,
           FIPID: fi.fipID
         }
       };
-      console.log("data in GST", data)
       let options = {
         url: "accountlink",
         type: "post",
@@ -390,7 +387,6 @@ export class LinkAccountComponent implements OnInit {
         includeUserSession: true,
         body: data
       };
-      console.log("options", options)
       this.httpService.makeHttpRequestWOLoader(options).subscribe(res => {
         if (res && res.data) {
           if (res.data.AuthenticatorType == "TOKEN") {
@@ -416,14 +412,14 @@ export class LinkAccountComponent implements OnInit {
   }
 
   submitOtp(event) {
-    if(event) {
+    if (event) {
       this.enteredOtp = event.enteredOtp;
       this.sendOtp(event.fi);
     }
   }
 
   resendOtp(event) {
-    if(event) { 
+    if (event) {
       this.linkAccountFormSubmit(event.fi, event.status);
     }
   }
@@ -446,7 +442,7 @@ export class LinkAccountComponent implements OnInit {
    * @param status
    */
   changeFormStaus(status, fiData) {
-    if(environment.library) { webSDKCustomCss(); }
+    if (environment.library) { webSDKCustomCss(); }
     fiData.formStatus = status;
   }
 
@@ -461,10 +457,8 @@ export class LinkAccountComponent implements OnInit {
       this.enteredOtp = e;
     } else if (e == -1) {
       // if e == -1, timer has stopped
-      //   console.log(e, "resend button enables");
     } else if (e == -2) {
       // e == -2, button click handle
-      //   console.log("resend otp");
     }
   }
 
@@ -472,8 +466,8 @@ export class LinkAccountComponent implements OnInit {
     this.enteredOtp = '';
     this.submitted = false;
   }
-  keyDownFunction(event, selectedFi){
-    if(event.key == "Enter"){
+  keyDownFunction(event, selectedFi) {
+    if (event.key == "Enter") {
       this.sendOtp(selectedFi)
     }
   }
