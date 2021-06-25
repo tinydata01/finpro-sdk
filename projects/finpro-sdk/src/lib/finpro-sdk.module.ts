@@ -11,8 +11,6 @@ import { MessagesComponent } from '../app/components/popups/messages/messages.co
 import { ToastComponent } from '../app/components/toast/toast.component';
 import { VerifyMobileNumberComponent } from '../app/components/verify-mobile-number/verify-mobile-number.component';
 import { AahandleComponent } from '../app/pages/aahandle/aahandle.component';
-// import { DiscoverAccountComponent } from '../app/pages/account-link/components/discover-account/discover-account.component';
-// import { DiscoverAccountsComponent } from '../app/pages/account-link/components/discover-accounts/discover-accounts.component';
 import { FIListComponent } from '../app/pages/account-link/components/fi-list/fi-list.component';
 import { FilterDropdownComponent } from '../app/pages/account-link/components/filter-dropdown/filter-dropdown.component';
 import { LinkAccountComponent } from '../app/pages/account-link/components/link-account/link-account.component';
@@ -31,15 +29,13 @@ import { FormComponent } from '../app/util-components/form/form.component';
 import { DiscoverAccountComponent } from '../app/pages/account-link/components/discover-account/discover-account.component';
 import { DiscoverAccountsComponent } from '../app/pages/account-link/components/discover-accounts/discover-accounts.component';
 import { SignupComponent } from '../app/pages/signup/signup.component';
-
-
-
-
+import { HeaderComponent } from '../app/components/header/header.component';
 
 @NgModule({
   declarations: [
     SignupComponent,
     FinproSdkComponent,
+    HeaderComponent,
     AahandleComponent,
     AuthenticationComponent,
     MessagesComponent,

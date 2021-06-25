@@ -23,32 +23,34 @@ import { DiscoverAccountsComponent } from '../app/pages/account-link/components/
 import { DiscoverAccountComponent } from '../app/pages/account-link/components/discover-account/discover-account.component';
 import { FormComponent } from '../app/util-components/form/form.component';
 import { FIListComponent } from '../app/pages/account-link/components/fi-list/fi-list.component';
+import { HeaderComponent } from '../app/components/header/header.component';
 @NgModule({
   declarations: [
     OnemoneywebSdkComponent,
-     AahandleComponent,
+    AahandleComponent,
+    HeaderComponent,
     AuthenticationComponent,
     MessagesComponent,
     ToastComponent,
     CustomOverlayComponent,
     FiSmallCardComponent,
     VerifyMobileNumberComponent,
-     CustomOtpComponent,
-     AahandleComponent,
-     LinkingStepperComponent,
-     StepperNavComponent,
-     LinkAccountsComponent,
-     LinkAccountComponent,
-     FilterDropdownComponent,
-     LoginComponent,
-     CustomOverlayComponent,
-     LinkingStepperComponent,
-     DiscoverAccountComponent,
-     DiscoverAccountsComponent,
-     FiSmallCardComponent,
-     FIListComponent,
-     AuthenticationComponent,
-     FormComponent
+    CustomOtpComponent,
+    AahandleComponent,
+    LinkingStepperComponent,
+    StepperNavComponent,
+    LinkAccountsComponent,
+    LinkAccountComponent,
+    FilterDropdownComponent,
+    LoginComponent,
+    CustomOverlayComponent,
+    LinkingStepperComponent,
+    DiscoverAccountComponent,
+    DiscoverAccountsComponent,
+    FiSmallCardComponent,
+    FIListComponent,
+    AuthenticationComponent,
+    FormComponent
   ],
   imports: [
     HttpClientModule,

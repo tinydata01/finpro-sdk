@@ -1,0 +1,50 @@
+.main-header__logo {
+    height: 75px;
+}
+
+*{
+    outline: none!important;
+    box-sizing: border-box;
+}
+
+.hdfc-logo {
+    padding: 20px 0px;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    height: 75px;
+}
+
+.logoutBtn{    
+    display: flex;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    font-size: 20px;
+    font-family: sans-serif;
+    color: white;
+    padding: 10px;
+}
+
+.logout-icon{
+    width: 37px;
+    margin-top: -8px;
+}
+
+.cursor--pointer{
+    cursor: pointer;
+}
+
+.visibility-hidden{
+    visibility: hidden;
+}
+
+@media(max-width:767px){
+    .logout-icon{
+        width: 32px;
+    }
+
+    .logoutBtn{
+        font-size: 15px;
+    }
+}

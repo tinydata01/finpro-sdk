@@ -1,10 +1,4 @@
-<div class="header--section">
-    <div class class="main-header__logo" id="header-navigate">
-        <img [src]="companyLogo" id="logo" alt="Onemoney - Logo" class="hdfc-logo" />
-        <!-- <div class="logoutBtn cursor--pointer" *ngIf="router.url !== '/login'"  [class.visibility-hidden]="!isLoggedIn" (click)="logout()">Logout<img class="logout-icon" src="assets/images/pngs/logout.png/"></div> -->
-    </div>
-    <!-- {{companyLogo}} -->
-</div>
+<lib-header [companyLogo]="companyLogo"></lib-header>
 <div class="content-section">
     <!-- <app-signup></app-signup> -->
     <!-- <app-aahandle></app-aahandle> -->
