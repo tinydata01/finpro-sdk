@@ -98,7 +98,7 @@ export class VerifyMobileNumberComponent implements OnInit {
             if (localStorage.getItem("sessionId") != null) {
               this.getRequestConsent();
             }
-            this.router.navigate(['/account-link']);
+            // this.router.navigate(['/account-link']);
           },
             (err) => {
               this.submitted = true;
@@ -120,7 +120,7 @@ export class VerifyMobileNumberComponent implements OnInit {
             if (localStorage.getItem("sessionId") != null) {
               this.getRequestConsent();
             }
-            this.router.navigate(['/account-link']);
+            // this.router.navigate(['/account-link']);
 
           },
             (err) => {

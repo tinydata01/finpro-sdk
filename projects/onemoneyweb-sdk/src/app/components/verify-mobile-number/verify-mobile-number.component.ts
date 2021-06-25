@@ -92,7 +92,7 @@ export class VerifyMobileNumberComponent implements OnInit {
           .subscribe(res => {
             localStorage.removeItem("sessionId");
             localStorage.setItem("sessionId", res["sessionId"]);
-            this.router.navigate(['/account-link']);
+            // this.router.navigate(['/account-link']);
           },
             (err) => {
               this.submitted = true;
@@ -110,7 +110,7 @@ export class VerifyMobileNumberComponent implements OnInit {
           [{ appIdentifier: appData.appIdentifier }], signupData).subscribe(result => {
             localStorage.removeItem("sessionId");
             localStorage.setItem("sessionId", result["sessionId"]);
-            this.router.navigate(['/account-link']);
+            // this.router.navigate(['/account-link']);
           },
             (err) => {
               this.submitted = true;
