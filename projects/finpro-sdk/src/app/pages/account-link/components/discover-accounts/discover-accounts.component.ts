@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from "@angular/core";
+import { Component, OnInit, Input, ViewChild, SimpleChange } from "@angular/core";
 import { HttpService } from '../../../../services/http.service';
 import { LoaderService } from '../../../../services/loader.service';
 import { toastStatuses } from '../../../../components/toast/toast.component';
@@ -23,7 +23,9 @@ export class DiscoverAccountsComponent implements OnInit {
   btnDisabled: boolean = true;
   accRefNumber;
   @Input() discoveredAccountsLength: any;
+  displayLinked: any = [];
   @Input() discoveredAccounts: any;
+  accountIndex: any;
 
   @Input() set selectedFIs(value: any) {
     if (value) {
@@ -50,14 +52,11 @@ export class DiscoverAccountsComponent implements OnInit {
 
   linkedAccountsLength = 0;
   ngOnInit() {
-    // this.getListOfLinkedAccounts();
+    this.getListOfLinkedAccounts();
     this.userMobileNumber = localStorage.getItem("mobileNumber");
     this.vuaData = localStorage.getItem("vuaData");
-    // this.getRequestConsent();
-
-
+    this.showConsentDetail();
   }
-
 
   ngDoCheck() {
     if (this.accountList.length > 0) {
@@ -70,7 +69,6 @@ export class DiscoverAccountsComponent implements OnInit {
     }
   }
 
-  displayLinked: boolean[] = [];
   checkAccountsLinked: any;
   keyDownFunction(event, i) {
 
@@ -94,7 +92,6 @@ export class DiscoverAccountsComponent implements OnInit {
     }
   }
   accountCheck(e, accRefNumber, i, j, flag) {
-
     if (e.target.checked) {
       if (flag == "LinkedAccount") {
         this.accountList.push(this.linkedAccounts[i].itm[j]);
@@ -143,9 +140,14 @@ export class DiscoverAccountsComponent implements OnInit {
     accountToLink.splice(0, 1);
     this.checkAccountsLinked = { 'accounts': accountToLink };
   }
-  sendOTPToLink(i, flag) {
+  sendOTPToLink(i, j, flag) {
+    if (i == 0 && this.accountIndex) {
+      i = this.accountIndex;
+    } else {
+      this.accountIndex = i;
+    }
     // this.btnDisabled = false;
-    this.displayOTP[i] = true;
+    this.displayOTP[j] = true;
     var accountToLink = [{
       type: '',
       data: {
@@ -168,7 +170,11 @@ export class DiscoverAccountsComponent implements OnInit {
         }
       })
     })
-    accountToLink.splice(0, 1);
+    accountToLink = accountToLink.filter(item => {
+      if (item.data.fipId) {
+        return item;
+      }
+    });
     let accounts = { 'accounts': accountToLink };
     if (accountToLink.length != 0) {
       this.oneMoneyService.multiAccountlink(accounts).subscribe(res => {
@@ -185,7 +191,7 @@ export class DiscoverAccountsComponent implements OnInit {
       this.accountList = accountToLink;
     }
     else {
-      this.displayOTP[i] = false;
+      this.displayOTP[j] = false;
       this.loader.showToast(toastStatuses.ERROR, "pleaseSelectOneAccountAtleast");
     }
   }
@@ -197,6 +203,15 @@ export class DiscoverAccountsComponent implements OnInit {
     if (e.length == this.settings.length) {
       this.enteredOtp = e;
     }
+    // this.enteredOtp = ''
+    // if (e.length == this.settings.length) {
+    //   // e will emit values entered as otp and,
+    //   this.enteredOtp = e;
+    // } else if (e == -1) {
+    //   // if e == -1, timer has stopped
+    // } else if (e == -2) {
+    //   // e == -2, button click handle
+    // }
   }
 
 
@@ -222,7 +237,18 @@ export class DiscoverAccountsComponent implements OnInit {
       this.oneMoneyService.accountVerify(this.dataVerify.authSessionParameters["refNumber"], this.enteredOtp, this.sessionId)
         .subscribe(res => {
           if (res.status == "SUCCESS") {
-            this.displayLinked[i] = true;
+            // this.displayLinked[i] = true;
+            if (this.displayLinked.length == 0) {
+              for (let index = 0; index < this.discoveredAccounts[0].itm.length; index++) {
+                if (index == this.accountIndex || this.displayLinked[index]) {
+                  this.displayLinked.push(true);
+                } else {
+                  this.displayLinked.push(false);
+                }
+              }
+            } else {
+              this.displayLinked.splice(this.accountIndex, 1, true);
+            }
             this.displayOTP[i] = false;
             this.loader.showToast(toastStatuses.SUCCESS, 'accountLinkedSuccessfully');
             this.httpService.hideThrobber();
@@ -231,7 +257,7 @@ export class DiscoverAccountsComponent implements OnInit {
             this.submitted = true;
             this.enteredOtp = null;
             this.httpService.hideThrobber();
-            //this.loader.showToast(toastStatuses.ERROR, 'unableToLinkOneOrMoreAccountsPleaseTryAgainLater');
+            this.loader.showToast(toastStatuses.ERROR, 'unableToLinkOneOrMoreAccountsPleaseTryAgainLater');
 
           }
         })

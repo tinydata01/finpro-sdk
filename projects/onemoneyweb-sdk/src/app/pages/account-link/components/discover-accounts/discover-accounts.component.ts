@@ -48,15 +48,6 @@ export class DiscoverAccountsComponent implements OnInit {
   constructor(private httpService: HttpService, private linkingStepper: LinkingStepperHelperService, private router: Router,
     private loader: LoaderService, private oneMoneyService: OnemoneyWebsdkService, private userService: UserService) {
     this.bankName = 'HDFC';
-    console.log(this.discoveredAccountsLength);
-    // if (this.displayLinked.length == 0) {
-    //   this.displayLinked.length = this.discoveredAccounts.length;
-    //   this.discoveredAccounts.forEach(element => {
-    //     element.itm.forEach(ele => {
-    //       this.displayLinked.push({ display: false });
-    //     });
-    //   });
-    // }
   }
 
   linkedAccountsLength = 0;
@@ -101,7 +92,6 @@ export class DiscoverAccountsComponent implements OnInit {
     }
   }
   accountCheck(e, accRefNumber, i, j, flag) {
-    console.log("displayLinked", this.displayLinked);
     if (e.target.checked) {
       if (flag == "LinkedAccount") {
         this.accountList.push(this.linkedAccounts[i].itm[j]);
@@ -156,7 +146,6 @@ export class DiscoverAccountsComponent implements OnInit {
     } else {
       this.accountIndex = i;
     }
-    console.log(i, j, this.accountIndex);
     // this.btnDisabled = false;
     this.displayOTP[j] = true;
     var accountToLink = [{
@@ -186,7 +175,6 @@ export class DiscoverAccountsComponent implements OnInit {
         return item;
       }
     });
-    // accountToLink.splice(0, 1);
     let accounts = { 'accounts': accountToLink };
     if (accountToLink.length != 0) {
       this.oneMoneyService.multiAccountlink(accounts).subscribe(res => {
@@ -261,7 +249,6 @@ export class DiscoverAccountsComponent implements OnInit {
             } else {
               this.displayLinked.splice(this.accountIndex, 1, true);
             }
-            console.log(i, this.displayLinked);
             this.displayOTP[i] = false;
             this.loader.showToast(toastStatuses.SUCCESS, 'accountLinkedSuccessfully');
             this.httpService.hideThrobber();
@@ -270,7 +257,7 @@ export class DiscoverAccountsComponent implements OnInit {
             this.submitted = true;
             this.enteredOtp = null;
             this.httpService.hideThrobber();
-            //this.loader.showToast(toastStatuses.ERROR, 'unableToLinkOneOrMoreAccountsPleaseTryAgainLater');
+            this.loader.showToast(toastStatuses.ERROR, 'unableToLinkOneOrMoreAccountsPleaseTryAgainLater');
 
           }
         })
