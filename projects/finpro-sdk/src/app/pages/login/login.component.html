@@ -4,7 +4,7 @@
 <app-form *ngIf="loginForm && !showAAHandle" class="login__form" [formGroup]="loginForm.formGroup"
   [formInputs]="loginForm.formInputs" (submitEvent)="loginUser($event)">
 </app-form>
-<div *ngIf="!showAAHandle" style="position: absolute;top: 375px;">
+<div *ngIf="!showAAHandle" style="position: absolute;top: 405px;">
   <span>Click here to read the</span>
   <a class="form__terms-and-conditions-text websdk-customcss-link" id="oneLink"
     href="https://www.onemoney.in/tandc.html" target="_blank" rel="noopener noreferrer">
