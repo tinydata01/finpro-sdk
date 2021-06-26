@@ -6,8 +6,6 @@
 			<div class="cursor--pointer poweredby-logo" id="accounLinkingpageId">
 				<img src="assets/images/pngs/logo.png" alt="Onemoney - Logo" class="logo-format" />
 			</div>
-			<div *ngIf="discoveredAccountsLength>0">Following accounts are discovered for mobile no:</div>
-			<h4 *ngIf="discoveredAccountsLength>0">Please link your accounts for approving consent</h4>
 			<div *ngIf="discoveredAccountsLength==0">{{'app.noAccountsFound'|translate: { userNumber:userMobileNumber }
 				}}</div>
 

@@ -26,6 +26,7 @@ export class DiscoverAccountsComponent implements OnInit {
   displayLinked: any = [];
   @Input() discoveredAccounts: any;
   accountIndex: any;
+  indexArray: any = [];
 
   @Input() set selectedFIs(value: any) {
     if (value) {
@@ -92,6 +93,8 @@ export class DiscoverAccountsComponent implements OnInit {
     }
   }
   accountCheck(e, accRefNumber, i, j, flag) {
+    this.indexArray.push(j);
+    console.log("indexArray", this.indexArray);
     if (e.target.checked) {
       if (flag == "LinkedAccount") {
         this.accountList.push(this.linkedAccounts[i].itm[j]);
@@ -240,15 +243,17 @@ export class DiscoverAccountsComponent implements OnInit {
             // this.displayLinked[i] = true;
             if (this.displayLinked.length == 0) {
               for (let index = 0; index < this.discoveredAccounts[0].itm.length; index++) {
-                if (index == this.accountIndex || this.displayLinked[index]) {
+                if (this.displayLinked[index]) {
                   this.displayLinked.push(true);
                 } else {
                   this.displayLinked.push(false);
                 }
               }
-            } else {
-              this.displayLinked.splice(this.accountIndex, 1, true);
             }
+            for (let i = 0; i < this.indexArray.length; i++) {
+              this.displayLinked[this.indexArray[i]] = true;
+            }
+            this.indexArray = [];
             this.displayOTP[i] = false;
             this.loader.showToast(toastStatuses.SUCCESS, 'accountLinkedSuccessfully');
             this.httpService.hideThrobber();

@@ -1,5 +1,31 @@
 <section class="accounts-container" *ngIf="discoveredAccountsLength!=0">
+  <div class="mt-10" *ngIf="linkedAccountsLength!=0">
+    <h2>Linked Accounts</h2>
+    <div *ngFor="let linkedAc of linkedAccounts;let k=index">
+      <div class="bank_account_container">
 
+        <div class="d-flex">
+          <img src="{{ linkedAc?.itm.smallUrl}}" onerror="this.onerror=null;this.src='assets/images/svgs/fi.svg';"
+            class="account__list__item_image" alt="FI - Logo" />
+          <div class="account__list__item__name">{{linkedAc?.fipId}}</div>
+
+        </div>
+        <div class="mt-10 d-flex" *ngFor="let itm of linkedAc.itm;let j=index">
+          <div class="checkbox">
+            <input type="checkbox" class="input-checkbox-value" id="linked{{k}}{{j}}"
+              (click)="accountCheck($event,accRefNumber,k,j,'LinkedAccount')" />
+            <label for="linked{{k}}{{j}}">{{(linkedAc?.itm[j].accType == "DEFAULT" ? "TERM DEPOSIT" :
+              linkedAc?.itm[j].accType) }} Account No :
+              <span> {{linkedAc?.itm[j].maskedAccNumber}}</span></label>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div *ngIf="discoveredAccountsLength>0">Following accounts are discovered for mobile no:</div>
+  <h4 *ngIf="discoveredAccountsLength>0">Please link your accounts for approving consent</h4>
   <div *ngFor="let acc of discoveredAccounts;let i=index" class="discover-account-content">
     <div class="bank_account_container">
 
@@ -83,31 +109,6 @@
     </div>
 
 
-  </div>
-  <div class="mt-10" *ngIf="linkedAccountsLength!=0">
-    <h2>Linked Accounts</h2>
-    <div *ngFor="let linkedAc of linkedAccounts;let k=index">
-      <div class="bank_account_container">
-
-        <div class="d-flex">
-          <img src="{{ linkedAc?.itm.smallUrl}}" onerror="this.onerror=null;this.src='assets/images/svgs/fi.svg';"
-            class="account__list__item_image" alt="FI - Logo" />
-          <div class="account__list__item__name">{{linkedAc?.fipId}}</div>
-
-        </div>
-        <div class="mt-10 d-flex" *ngFor="let itm of linkedAc.itm;let j=index">
-          <div class="checkbox">
-            <input type="checkbox" class="input-checkbox-value" id="linked{{k}}{{j}}"
-              (click)="accountCheck($event,accRefNumber,k,j,'LinkedAccount')" />
-            <label for="linked{{k}}{{j}}">{{(linkedAc?.itm[j].accType == "DEFAULT" ? "TERM DEPOSIT" :
-              linkedAc?.itm[j].accType) }} Account No :
-              <span> {{linkedAc?.itm[j].maskedAccNumber}}</span></label>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
   </div>
   <div class="pl-20 mt-30 d-flex">
     <button class="custom-btn btn-primary" id="aprroveId" type="submit" [disabled]="btnDisabled"
