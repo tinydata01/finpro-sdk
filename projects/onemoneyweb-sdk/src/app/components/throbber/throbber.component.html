@@ -1,0 +1,6 @@
+<section *ngIf="showThrobber">
+    <img src="../../../assets/images/pngs/throbber.gif"  width="50px" height="50px" alt="Throbber"/>
+    <div class="info" *ngIf="showMessage">
+        {{ "app." + showMessage | translate }}
+    </div>
+</section>

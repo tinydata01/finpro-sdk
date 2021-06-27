@@ -7,7 +7,6 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { CustomOverlayComponent } from '../app/components/custom-overlay/custom-overlay.component';
 import { OnemoneywebSdkComponent } from './onemoneyweb-sdk.component';
 import { AahandleComponent } from '../app/pages/aahandle/aahandle.component';
-import { AuthenticationComponent } from '../app/pages/authentication/authentication.component';
 import { MessagesComponent } from '../app/components/popups/messages/messages.component';
 import { ToastComponent } from '../app/components/toast/toast.component';
 import { FiSmallCardComponent } from '../app/components/fi-small-card/fi-small-card.component';
@@ -18,18 +17,18 @@ import { StepperNavComponent } from '../app/pages/account-link/components/steppe
 import { LinkAccountsComponent } from '../app/pages/account-link/components/link-accounts/link-accounts.component';
 import { LinkAccountComponent } from '../app/pages/account-link/components/link-account/link-account.component';
 import { FilterDropdownComponent } from '../app/pages/account-link/components/filter-dropdown/filter-dropdown.component';
-import { LoginComponent } from '../app/pages/login/login.component';
 import { DiscoverAccountsComponent } from '../app/pages/account-link/components/discover-accounts/discover-accounts.component';
 import { DiscoverAccountComponent } from '../app/pages/account-link/components/discover-account/discover-account.component';
 import { FormComponent } from '../app/util-components/form/form.component';
 import { FIListComponent } from '../app/pages/account-link/components/fi-list/fi-list.component';
 import { HeaderComponent } from '../app/components/header/header.component';
+import { ThrobberComponent } from '../app/components/throbber/throbber.component';
+import { WelcomeScreenComponent } from '../app/components/welcome-screen/welcome-screen.component';
 @NgModule({
   declarations: [
     OnemoneywebSdkComponent,
     AahandleComponent,
     HeaderComponent,
-    AuthenticationComponent,
     MessagesComponent,
     ToastComponent,
     CustomOverlayComponent,
@@ -42,15 +41,15 @@ import { HeaderComponent } from '../app/components/header/header.component';
     LinkAccountsComponent,
     LinkAccountComponent,
     FilterDropdownComponent,
-    LoginComponent,
     CustomOverlayComponent,
     LinkingStepperComponent,
     DiscoverAccountComponent,
     DiscoverAccountsComponent,
     FiSmallCardComponent,
     FIListComponent,
-    AuthenticationComponent,
-    FormComponent
+    FormComponent,
+    ThrobberComponent,
+    WelcomeScreenComponent
   ],
   imports: [
     HttpClientModule,

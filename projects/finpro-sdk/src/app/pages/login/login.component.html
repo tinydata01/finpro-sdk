@@ -2,8 +2,9 @@
 
 </div>
 <app-form *ngIf="loginForm && !showAAHandle" class="login__form" [formGroup]="loginForm.formGroup"
-  [formInputs]="loginForm.formInputs" (submitEvent)="loginUser($event)">
+  [formInputs]="loginForm.formInputs" (submitEvent)="loginUser($event)"><ng-content select="p"></ng-content>
 </app-form>
+<ng-content select="p"></ng-content>
 <div *ngIf="!showAAHandle" style="position: absolute;top: 405px;">
   <span>Click here to read the</span>
   <a class="form__terms-and-conditions-text websdk-customcss-link" id="oneLink"

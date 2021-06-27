@@ -1,4 +1,5 @@
 <!-- <p>Library testing</p> -->
-<lib-finpro-sdk (consentHandle)="consentData($event)" *ngIf="consentHandleData.length == 0"></lib-finpro-sdk>
+<!-- <router-outlet></router-outlet> -->
+<lib-finpro-sdk (consentHandle)="consentData($event)" *ngIf="consentHandleData.length == 0"><p>This is testing for dynamix data</p></lib-finpro-sdk>
 
-<lib-onemoneyweb-sdk *ngIf="consentHandleData.length > 0"></lib-onemoneyweb-sdk>
+<lib-onemoneyweb-sdk *ngIf="consentHandleData.length > 0" [consentHandle]="consentHandleData"></lib-onemoneyweb-sdk>

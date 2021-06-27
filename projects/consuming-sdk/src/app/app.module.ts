@@ -4,10 +4,14 @@ import { FinproSdkModule } from 'finpro-sdk';
 import { OnemoneywebSdkModule } from 'onemoneyweb-sdk';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SignupComponent } from './signup/signup.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SignupComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

@@ -11,12 +11,6 @@ import { MessagesComponent } from '../app/components/popups/messages/messages.co
 import { ToastComponent } from '../app/components/toast/toast.component';
 import { VerifyMobileNumberComponent } from '../app/components/verify-mobile-number/verify-mobile-number.component';
 import { AahandleComponent } from '../app/pages/aahandle/aahandle.component';
-import { FIListComponent } from '../app/pages/account-link/components/fi-list/fi-list.component';
-import { FilterDropdownComponent } from '../app/pages/account-link/components/filter-dropdown/filter-dropdown.component';
-import { LinkAccountComponent } from '../app/pages/account-link/components/link-account/link-account.component';
-import { LinkAccountsComponent } from '../app/pages/account-link/components/link-accounts/link-accounts.component';
-import { StepperNavComponent } from '../app/pages/account-link/components/stepper-nav/stepper-nav.component';
-import { LinkingStepperComponent } from '../app/pages/account-link/linking-stepper/linking-stepper.component';
 import { AuthenticationComponent } from '../app/pages/authentication/authentication.component';
 import { LoginComponent } from '../app/pages/login/login.component';
 //import { SignupComponent } from '../app/pages/signup/signup.component';
@@ -26,17 +20,15 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { FinproSdkComponent } from './finpro-sdk.component';
 import { FormComponent } from '../app/util-components/form/form.component';
-import { DiscoverAccountComponent } from '../app/pages/account-link/components/discover-account/discover-account.component';
-import { DiscoverAccountsComponent } from '../app/pages/account-link/components/discover-accounts/discover-accounts.component';
 import { SignupComponent } from '../app/pages/signup/signup.component';
 import { HeaderComponent } from '../app/components/header/header.component';
+import { ThrobberComponent } from '../app/components/throbber/throbber.component';
 
 @NgModule({
   declarations: [
     SignupComponent,
     FinproSdkComponent,
     HeaderComponent,
-    AahandleComponent,
     AuthenticationComponent,
     MessagesComponent,
     ToastComponent,
@@ -45,19 +37,11 @@ import { HeaderComponent } from '../app/components/header/header.component';
     VerifyMobileNumberComponent,
     CustomOtpComponent,
     AahandleComponent,
-    LinkingStepperComponent,
-    StepperNavComponent,
-    LinkAccountsComponent,
-    LinkAccountComponent,
-    FilterDropdownComponent,
     FormComponent,
     LoginComponent,
     CustomOverlayComponent,
-    LinkingStepperComponent,
-    DiscoverAccountComponent,
-    DiscoverAccountsComponent,
     FiSmallCardComponent,
-    FIListComponent,
+    ThrobberComponent
 
   ],
   imports: [
@@ -80,7 +64,9 @@ import { HeaderComponent } from '../app/components/header/header.component';
     MessagesComponent,
     ToastComponent,
     FormComponent,
-    LoginComponent
+    LoginComponent,
+    ThrobberComponent,
+    AahandleComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
