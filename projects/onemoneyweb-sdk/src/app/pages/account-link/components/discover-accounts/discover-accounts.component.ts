@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, SimpleChange } from "@angular/core";
+import { Component, OnInit, Input, ViewChild, SimpleChange, Output, EventEmitter } from "@angular/core";
 import { HttpService } from '../../../../services/http.service';
 import { LoaderService } from '../../../../services/loader.service';
 import { toastStatuses } from '../../../../components/toast/toast.component';
@@ -35,7 +35,7 @@ export class DiscoverAccountsComponent implements OnInit {
     }
   }
   userNumber: any;
-  welcomeScreen:boolean = false;
+  @Output() welcomeScreen: EventEmitter<any> = new EventEmitter();
   public settings = {
     length: 6,
     numbersOnly: true,
@@ -336,7 +336,7 @@ export class DiscoverAccountsComponent implements OnInit {
           .subscribe(res => {
             if (res.status == "SUCCESS") {
               this.loader.showToast(toastStatuses.SUCCESS, 'consentRequestAcceptedSuccessfully');
-              this.welcomeScreen= true;
+              this.welcomeScreen.emit(true);
               this.router.navigate(['/welcome-screen']);
             } else {
               this.consentActionSubmitted = true;
@@ -355,7 +355,7 @@ export class DiscoverAccountsComponent implements OnInit {
             if (res.status == "SUCCESS") {
               this.loader.showToast(toastStatuses.SUCCESS, 'consentRejectedSuccessfully');
               this.showVpinPopup = false;
-              this.welcomeScreen= true;
+              this.welcomeScreen.emit(true);
               this.router.navigate(['/welcome-screen']);
             } else {
               this.consentActionSubmitted = true;

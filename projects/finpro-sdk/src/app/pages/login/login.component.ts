@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
   logo: string;
   noHeight: boolean;
   @Output() consentHandle: EventEmitter<any> = new EventEmitter();
+  @Output() showAAHandleFlag: EventEmitter<any> = new EventEmitter();
 
   constructor(
     public formDefinationService: FormDefinationService,
@@ -143,9 +144,10 @@ export class LoginComponent implements OnInit {
           else {
             this.showOTPData = false;
             this.showAAHandle = true;
-            if (this.showAAHandle) {
-              this.router.navigate(['/aahandle'])
-            }
+            this.showAAHandleFlag.emit(true);
+            // if (this.showAAHandle) {
+            //   this.router.navigate(['/aahandle'])
+            // }
           }
         });
     }

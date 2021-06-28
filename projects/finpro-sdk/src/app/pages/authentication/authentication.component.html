@@ -8,12 +8,11 @@
     <div class="right-side-section">
       <div class="form-layout form-content" *ngIf="formLayoutData && formLayoutData.formType">
         <div ngSwitch="login">
-          <app-login (consentHandle)="consentData($event)"></app-login>
+          <app-login (consentHandle)="consentData($event)" (showAAHandleFlag)="showAAHandleFlag($event)"></app-login>
         </div>
       </div>
     </div>
   </div>
 </div>
-<!-- <app-aahandle *ngIf="!formLayoutData && showAaHandle"></app-aahandle>   -->
-<!-- <app-signup *ngIf="!formLayoutData && !showAaHandle"></app-signup>  -->
-<!-- <p>Authentication page testing</p>-->
+<app-aahandle *ngIf="!formLayoutData && showAaHandle"></app-aahandle>
+<!-- <app-signup *ngIf="!formLayoutData && !showAaHandle"></app-signup> -->

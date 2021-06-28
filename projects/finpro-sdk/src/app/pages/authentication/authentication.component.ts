@@ -100,11 +100,17 @@ export class AuthenticationComponent implements OnInit {
     this.consentHandle.emit(valueEmitted);
   }
 
+  showAAHandleFlag(valueEmitted) {
+    this.showAaHandle = valueEmitted;
+    this.formLayoutData = false;
+  }
+
   navigateToLoginPage() {
     this.router.navigate(['/login'])
   }
   getlang() {
     this.default = this.commonService.getDefaultLanguage()
+    //console.log("this.default" + this.default)
     if (this.default == "en") {
       this.selectedLanguage = { key: "en", value: "English" };
     }

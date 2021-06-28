@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="!welcomeScreen">
 
 	<div class="account-list-sections">
 		<div class="cards__container">
@@ -11,7 +11,7 @@
 
 
 			<app-discover-accounts [discoveredAccountsLength]="discoveredAccountsLength"
-				[discoveredAccounts]="discoveredAccounts"></app-discover-accounts>
+				[discoveredAccounts]="discoveredAccounts" (welcomeScreen)="welcome($event)"></app-discover-accounts>
 		</div>
 
 		<div class="financial-institutions mt-75">
@@ -22,4 +22,8 @@
 		</div>
 	</div>
 
+</section>
+
+<section *ngIf="welcomeScreen">
+	<app-welcome-screen></app-welcome-screen>
 </section>

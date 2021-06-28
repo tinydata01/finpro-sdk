@@ -14,6 +14,7 @@ export class LinkingStepperComponent implements OnInit {
   FIs: any;
   selectedFis: any;
   userMobileNumber: any;
+  welcomeScreen: any = false;
   constructor(
     private http: HttpService,
     private oneMoneyService: OnemoneyWebsdkService) {
@@ -163,6 +164,10 @@ export class LinkingStepperComponent implements OnInit {
         this.http.hideThrobber();
       })
 
+  }
+
+  welcome(event) {
+    this.welcomeScreen = event;
   }
 
   selectedFIs(data) {
