@@ -12,7 +12,7 @@ export * from './lib/onemoneyweb-sdk.module';
 // export * from './app/components/toast/toast.component'
 // export * from './app/pages/login/login.component';
 // export * from './app/util-components/form/form.component';
-
+export * from './app/pages/signup/signup.component'
 
 
 

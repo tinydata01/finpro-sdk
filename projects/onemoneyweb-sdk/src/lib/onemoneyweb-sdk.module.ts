@@ -24,6 +24,7 @@ import { FIListComponent } from '../app/pages/account-link/components/fi-list/fi
 import { HeaderComponent } from '../app/components/header/header.component';
 import { ThrobberComponent } from '../app/components/throbber/throbber.component';
 import { WelcomeScreenComponent } from '../app/components/welcome-screen/welcome-screen.component';
+import { SignupComponent } from '../app/pages/signup/signup.component';
 @NgModule({
   declarations: [
     OnemoneywebSdkComponent,
@@ -49,7 +50,9 @@ import { WelcomeScreenComponent } from '../app/components/welcome-screen/welcome
     FIListComponent,
     FormComponent,
     ThrobberComponent,
-    WelcomeScreenComponent
+    WelcomeScreenComponent,
+    SignupComponent
+    
   ],
   imports: [
     HttpClientModule,
@@ -68,6 +71,7 @@ import { WelcomeScreenComponent } from '../app/components/welcome-screen/welcome
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
     OnemoneywebSdkComponent,
+    SignupComponent
     // LinkingStepperComponent,
     // MessagesComponent,
     // ToastComponent,
