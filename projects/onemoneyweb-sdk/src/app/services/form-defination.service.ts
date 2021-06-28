@@ -45,8 +45,8 @@ export class FormDefinationService {
       value: "",
       controlType: "inputText",
       editable: true,
-      emptyValueMessage: "pleaseEnterValidMobileNumber",
-      validationValue: "pleaseEnterValidMobileNumber",
+      emptyValueMessage: "Please enter valid mobile number",
+      validationValue: "Please enter valid mobile number",
       validators: [Validators.required, FormDefinationService.validateMobile],
       digitOnly: 10,
       updateOn: 'blur',
@@ -97,7 +97,7 @@ export class FormDefinationService {
     //   imagePassword: 'eye-closed',
     //   forgotPin: true
     // },
-   
+
     {
       type: "submit",
       placeholder: "",
@@ -114,7 +114,7 @@ export class FormDefinationService {
   signupFormInputsConfig = [
     {
       type: "text",
-      placeholder: "pleaseEnterYourFullName",
+      placeholder: "Please enter your full name",
       label: "Name",
       required: true,
       key: "userName",
@@ -122,23 +122,23 @@ export class FormDefinationService {
       value: "",
       controlType: "inputText",
       editable: true,
-      emptyValueMessage: "pleaseEnterYourName",
-      validationValue: "pleaseEnterValidName",
+      emptyValueMessage: "Please enter your name",
+      validationValue: "Please enter valid name",
       validators: [Validators.required],
       focus: true
     },
     {
       type: "number",
-      placeholder: "enterYourMobileNumber",
+      placeholder: "Enter your mobile number",
       label: "Mobile Number",
       labelImage: "mobile",
       required: true,
       key: "mobileNumber",
-      value:  localStorage.getItem("mobileNumber"),
+      value: localStorage.getItem("mobileNumber"),
       editable: false,
       controlType: "inputText",
-      emptyValueMessage: "pleaseEnterMobileNumber",
-      validationValue: "pleaseEnterValidMobileNumber",
+      emptyValueMessage: "Please enter mobile number",
+      validationValue: "Please enter valid mobile number",
       validators: [Validators.required, FormDefinationService.validateMobile],
       updateOn: 'blur',
       digitOnly: 10
@@ -152,10 +152,10 @@ export class FormDefinationService {
       key: "VUA",
       imagePassword: "eye-closed",
       value: localStorage.getItem("mobileNumber"),
-      editable : false,
+      editable: false,
       controlType: "inputVuaText",
-      emptyValueMessage:"pleaseEnterVUA",
-      validationValue:"pleaseEnterVUA",
+      emptyValueMessage: "pleaseEnterVUA",
+      validationValue: "pleaseEnterVUA",
       validators: [
         Validators.required
       ]
@@ -206,7 +206,7 @@ export class FormDefinationService {
       emptyValueMessage: "pleaseSelectTermsAndConditions",
       leftLable: true,
       validators: [Validators.requiredTrue]
-  
+
     },
     {
       type: "submit",
@@ -218,7 +218,7 @@ export class FormDefinationService {
       controlType: "submitButton",
       validators: [],
       callback: "",
-      id:"signupFormBtn"
+      id: "signupFormBtn"
     }
   ];
 
@@ -231,7 +231,7 @@ export class FormDefinationService {
       required: true,
       key: "vua",
       value: "",
-      controlType: "inputVuaText",           
+      controlType: "inputVuaText",
       editable: true,
       emptyValueMessage: "minimumLength",
       validationValue: "pleaseEnterValidValue",
@@ -340,8 +340,8 @@ export class FormDefinationService {
       value: "",
       editable: true,
       controlType: "inputText",
-      emptyValueMessage: "pleaseEnterValidMobileNumber",
-      validationValue: "pleaseEnterValidMobileNumber",
+      emptyValueMessage: "Please enter valid mobile number",
+      validationValue: "Please enter valid mobile number",
       validators: [Validators.required, FormDefinationService.validateMobile],
       digitOnly: 10,
       maxLength: 10
@@ -488,7 +488,7 @@ export class FormDefinationService {
   static validateUniqueUsername(control: FormControl): any {
     var regex = /^[a-zA-Z][a-zA-Z0-9._-]{7,14}$/;
     var found = regex.test(control.value);
-    return found ? null : { username: true};
+    return found ? null : { username: true };
   }
   /**
    * @chaithu
@@ -496,16 +496,16 @@ export class FormDefinationService {
    * Alphanumerics with -_.
    */
   static validateVua(control: FormControl): any {
-     var regex = /^([A-Za-z0-9][a-zA-Z0-9-_.]{2,24})*$/
+    var regex = /^([A-Za-z0-9][a-zA-Z0-9-_.]{2,24})*$/
     var found = regex.test(control.value);
     var multispaces = false;
-     if (found && control.value) {
-       for(let i = 0; i < control.value.length; i++){
-         if(control.value[i] == ' ' && control.value[i + 1] == ' '){
+    if (found && control.value) {
+      for (let i = 0; i < control.value.length; i++) {
+        if (control.value[i] == ' ' && control.value[i + 1] == ' ') {
           multispaces = true;
-         }
-       }
+        }
       }
+    }
     return (found && !multispaces) ? null : { vua: true };
     //return found ? null : { vua: true };
   }
