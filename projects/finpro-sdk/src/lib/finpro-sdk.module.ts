@@ -20,13 +20,12 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { FinproSdkComponent } from './finpro-sdk.component';
 import { FormComponent } from '../app/util-components/form/form.component';
-import { SignupComponent } from '../app/pages/signup/signup.component';
 import { HeaderComponent } from '../app/components/header/header.component';
 import { ThrobberComponent } from '../app/components/throbber/throbber.component';
+import { OnemoneywebSdkModule } from 'onemoneyweb-sdk';
 
 @NgModule({
   declarations: [
-    SignupComponent,
     FinproSdkComponent,
     HeaderComponent,
     AuthenticationComponent,
@@ -49,6 +48,7 @@ import { ThrobberComponent } from '../app/components/throbber/throbber.component
     HttpClientModule,
     TranslateModule,
     FormsModule,
+    OnemoneywebSdkModule,
     ReactiveFormsModule,
     TranslateModule.forRoot({
       loader: {

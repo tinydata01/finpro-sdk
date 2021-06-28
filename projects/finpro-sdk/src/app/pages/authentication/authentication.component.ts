@@ -105,6 +105,11 @@ export class AuthenticationComponent implements OnInit {
     this.formLayoutData = false;
   }
 
+  signUpFlag(valueEmitted) {
+    this.showAaHandle = valueEmitted;
+    this.formLayoutData = false;
+  }
+
   navigateToLoginPage() {
     this.router.navigate(['/login'])
   }

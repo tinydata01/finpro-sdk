@@ -14,5 +14,5 @@
     </div>
   </div>
 </div>
-<app-aahandle *ngIf="!formLayoutData && showAaHandle"></app-aahandle>
-<!-- <app-signup *ngIf="!formLayoutData && !showAaHandle"></app-signup> -->
+<app-aahandle *ngIf="!formLayoutData && showAaHandle" (signUpFlag)="signUpFlag($event)"></app-aahandle>
+<app-signup *ngIf="!formLayoutData && !showAaHandle"></app-signup>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from "@angular/router";
 @Component({
   selector: 'app-aahandle',
@@ -6,13 +6,15 @@ import { Router } from "@angular/router";
   styleUrls: ['./aahandle.component.scss']
 })
 export class AahandleComponent implements OnInit {
-  aahandle:any;
-  constructor(private router: Router ) { }
+  aahandle: any;
+  @Output() signUpFlag: EventEmitter<any> = new EventEmitter();
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
-  openSignupForm(aahandle){
-  localStorage.setItem("aaHandle",aahandle);
-  this.router.navigate(['/signup']);
+  openSignupForm(aahandle) {
+    localStorage.setItem("aaHandle", aahandle);
+    this.signUpFlag.emit(false);
+    // this.router.navigate(['/signup']);
   }
 }
