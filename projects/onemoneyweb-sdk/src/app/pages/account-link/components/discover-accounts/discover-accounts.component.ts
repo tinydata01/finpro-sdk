@@ -27,6 +27,7 @@ export class DiscoverAccountsComponent implements OnInit {
   @Input() discoveredAccounts: any;
   accountIndex: any;
   indexArray: any = [];
+  linkedTag: boolean = false;
 
   @Input() set selectedFIs(value: any) {
     if (value) {
@@ -60,16 +61,16 @@ export class DiscoverAccountsComponent implements OnInit {
     this.showConsentDetail();
   }
 
-  ngDoCheck() {
-    if (this.accountList.length > 0) {
-      if (this.mycheckbox.nativeElement.checked) {
-        this.btnDisabled = false;
-      }
-    }
-    else {
-      this.btnDisabled = true;
-    }
-  }
+  // ngDoCheck() {
+  //   if (this.accountList.length > 0) {
+  //     if (this.mycheckbox.nativeElement.checked) {
+  //       this.btnDisabled = false;
+  //     }
+  //   }
+  //   else {
+  //     this.btnDisabled = true;
+  //   }
+  // }
 
   checkAccountsLinked: any;
   keyDownFunction(event, i) {
@@ -94,18 +95,21 @@ export class DiscoverAccountsComponent implements OnInit {
     }
   }
   accountCheck(e, accRefNumber, i, j, flag) {
-    this.indexArray.push(j);
-    console.log("indexArray", this.indexArray);
     if (e.target.checked) {
       if (flag == "LinkedAccount") {
+        this.linkedTag = true;
+        this.changeAuthorizeEvent();
         this.accountList.push(this.linkedAccounts[i].itm[j]);
       }
       else {
+        this.indexArray.push(j);
         this.accountList.push(this.discoveredAccounts[i].itm[j]);
       }
       this.accountListArray();
     }
     else {
+      this.linkedTag = false;
+      this.changeAuthorizeEvent();
       let acb = this.accountList.findIndex(x => x.accRefNumber == accRefNumber);
       if (acb == -1) {
         this.accountList.splice(acb, 1);
@@ -150,7 +154,6 @@ export class DiscoverAccountsComponent implements OnInit {
     } else {
       this.accountIndex = i;
     }
-    // this.btnDisabled = false;
     this.displayOTP[j] = true;
     var accountToLink = [{
       type: '',
@@ -253,13 +256,16 @@ export class DiscoverAccountsComponent implements OnInit {
             }
             for (let i = 0; i < this.indexArray.length; i++) {
               this.displayLinked[this.indexArray[i]] = true;
-            }
+            } this.linkedTag = true;
+            this.changeAuthorizeEvent();
             this.indexArray = [];
             this.displayOTP[i] = false;
             this.loader.showToast(toastStatuses.SUCCESS, 'accountLinkedSuccessfully');
             this.httpService.hideThrobber();
           }
           else {
+            this.linkedTag = false;
+            this.changeAuthorizeEvent();
             this.submitted = true;
             this.enteredOtp = null;
             this.httpService.hideThrobber();
@@ -398,7 +404,7 @@ export class DiscoverAccountsComponent implements OnInit {
     this.showDetail = false;
   }
   changeAuthorizeEvent() {
-    if (this.mycheckbox.nativeElement.checked) {
+    if (this.mycheckbox.nativeElement.checked && this.linkedTag) {
       this.btnDisabled = false;
     }
     else {
