@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpLoaderFactory } from 'finpro-sdk';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { CustomOverlayComponent } from '../app/components/custom-overlay/custom-overlay.component';
 import { OnemoneywebSdkComponent } from './onemoneyweb-sdk.component';
@@ -25,6 +25,7 @@ import { HeaderComponent } from '../app/components/header/header.component';
 import { ThrobberComponent } from '../app/components/throbber/throbber.component';
 import { WelcomeScreenComponent } from '../app/components/welcome-screen/welcome-screen.component';
 import { SignupComponent } from '../app/pages/signup/signup.component';
+
 @NgModule({
   declarations: [
     OnemoneywebSdkComponent,
@@ -81,3 +82,6 @@ import { SignupComponent } from '../app/pages/signup/signup.component';
   ]
 })
 export class OnemoneywebSdkModule { }
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
+}
