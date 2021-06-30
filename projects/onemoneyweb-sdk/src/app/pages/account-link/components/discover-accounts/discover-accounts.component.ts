@@ -108,6 +108,10 @@ export class DiscoverAccountsComponent implements OnInit {
       this.accountListArray();
     }
     else {
+      var index = this.indexArray.indexOf(j);
+      if (index > -1) {
+        this.indexArray.splice(index, 1);
+      }
       this.linkedTag = false;
       this.changeAuthorizeEvent();
       let acb = this.accountList.findIndex(x => x.accRefNumber == accRefNumber);
